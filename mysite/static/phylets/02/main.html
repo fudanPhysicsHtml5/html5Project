@@ -1,0 +1,449 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.14.2/math.min.js"></script>
+    <meta charset="UTF-8">
+    <title>html5小课题</title>
+    <style>
+        div {
+            text-align: center;
+            width: 500px;
+        }
+
+        p {
+            text-indent: 2em;
+            width: 700px;
+        }
+    </style>
+
+</head>
+<body>
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <h1>基于分光计的SPR</h1>
+    <a href="http://phylab.fudan.edu.cn/doku.php?id=exp:common:fgj2" target="_blank">相关链接：复旦大学物理实验中心 基于分光计的SPR</a>
+    <hr />
+    <h2>一、实验目的</h2>
+    <ul>
+        <li>学会分光计的调节与使用</li>
+        <li>掌握什么是倏逝波，什么是SPR</li>
+        <li>理解现有的光路设计思想</li>
+        <li>分析讨论共振角与折射率的关系</li>
+    </ul>
+    <h2>二、实验原理</h2>
+    <p>光从光密介质射入光疏介质一定入射角下可发生全反射，利用麦克斯韦方程和介质表面连续性方程可得介质中产生了强度呈指数衰减的倏逝波:</p>
+    <div>\(I(z)=I(0)e^{-\frac zd}\)</div>
+    <p>表面等离子体波是沿金属和电介质界面传播的电磁波，当入射光以一特定角度入射时，入射电磁波和等离子体波的波矢\(x\)分量相等，两者能发生共振耦合，光被大量吸收，反射光强急剧减弱。但由于光从空气进入金属膜时波矢\(x\)分量为 </p>
+    <div>\(k_x=\frac\omega c \sin \theta\lt\frac\omega c\)</div>
+    <p>而等离子体波的波矢为</p>
+    <div>\(k_{sp}=\frac\omega c \sqrt{\frac{\epsilon_1\epsilon _2}{\epsilon_1+\epsilon_2}}\gt\frac\omega c\)</div>
+    <p>两者无法匹配产生SPR，故可使光经过玻璃介质折射再打到金属表面：</p>
+    <div>\(k'_x=n_0\frac \omega c\sin \theta\)</div>
+    <p>而产生SPR的条件是</p>
+    <div>\(k'_x=Re(k_{sp})\)</div>
+    <p>即有</p>
+    <div>\(n_0\sin{\theta_{sp}}=\sqrt{\frac{Re(\epsilon_1)n_2^2}{Re(\epsilon_1)+n_2^2}}\)</div>
+    <p>其中\(\theta_{sp}\)是共振角，\(n_0\)是棱镜折射率，\(n_2\)是介质折射率，\(Re(\epsilon_1)\)是金属介电常数实部</p>
+    <p>另外可计算入射光的反射率\( R_p=|r_{012p}|^2=|\frac{r_{01p}+r_{12p}e^{2ik_{z1}d}}{1+r_{01p}r_{12p}e^{2ik_{z1}d}}|^2\)</p>
+    <p>其中</p>
+    <div>
+        \(r_{ijp}=\frac{\epsilon_jk_{zi}-\epsilon_ik_{zj}}{\epsilon_jk_{zi}+\epsilon_ik_{zj}}\)，
+        \(k_{zj}=\sqrt{\frac{2\pi\epsilon_j}{\lambda}-k_{x0}}\)
+    </div>
+    <p>发生表面等离共振时，光耦合到金属和介质的界面上，反射光强大大减小，因此可以通过测量反射光强得到介质对应的共振角，由共振角\(\theta_{sp}\)和上述公式计算得到介质折射率。</p>
+    <h2>三、操作指南</h2>
+    <ul>
+        <li>点击红色按钮打开激光器</li>
+        <li>旋转中间灰色圆台可以改变激光入射角</li>
+        <li>旋转右侧的接收器可以采集反射光强</li>
+        <li>点击记录将当前入射角和反射光强记录至下方表格</li>
+        <li>记录好数据后点击绘图得到反射光强随入射角的变化，可从图中找出共振角</li>
+    </ul>
+    <canvas id="spr" width="800" height="500"></canvas>
+    <hr>
+    <table border="1">
+        <tr id="tr1">
+            <td>入射角</td>
+        </tr>
+        <tr id="tr2">
+            <td>光强</td>
+        </tr>
+    </table>
+    <br>
+    <input id="button" type="button" value="绘图" onclick="printchart()">
+    <div id="container" style="width: 550px; height: 400px; margin: 0 auto"></div>
+    <script>
+        var canvas = document.getElementById("spr");
+        ctx = canvas.getContext("2d");
+        ctx.save();
+        ctx.beginPath();
+        ctx.fillStyle = "silver";
+        ctx.fillRect(0, 0, 800, 500);
+
+        ctx.restore();
+        var laser = function () {
+            this.x = 0;
+            this.y = 0;
+        }
+        laser.prototype.draw = function (ctx) {
+            ctx.save();
+            ctx.translate(this.x, this.y);
+
+            ctx.beginPath();
+            ctx.fillStyle = "black";
+            ctx.fillRect(0, 0, 80, 20);
+            ctx.closePath();
+
+            ctx.beginPath();
+            ctx.fillStyle = "red";
+            ctx.fillRect(5, 5, 10, 10);
+            ctx.closePath();
+
+            ctx.restore();
+        }
+        var Laser = new laser();
+        Laser.x = 80;
+        Laser.y = 240;
+
+        var plate = function () {
+            this.x = 0;
+            this.y = 0;
+            this.rotation = 0;
+        }
+        plate.prototype.draw = function (ctx) {
+            ctx.save();
+            ctx.translate(this.x, this.y);
+            ctx.rotate(this.rotation);
+
+            ctx.beginPath();
+            ctx.fillStyle = "gray";
+            ctx.arc(0, 0, 100, 0, 2 * Math.PI, true);//圆盘
+            ctx.fill();
+            ctx.closePath();
+
+            ctx.beginPath();
+            ctx.arc(0, 0, 30, 0, Math.PI, true);//透镜
+            ctx.fillStyle = "white";
+            ctx.fill();
+            ctx.closePath();
+
+            ctx.beginPath();
+            ctx.fillStyle = "orange";
+            ctx.fillRect(-30, 0, 60, 5);//金膜
+            ctx.closePath();
+
+            ctx.beginPath();
+            ctx.fillStyle = "silver";
+            ctx.fillRect(-30, 5, 60, 15);//介质
+            ctx.closePath();
+
+
+            ctx.restore();
+        }
+        var Plate = new plate();
+        Plate.x = 350;
+        Plate.y = 250;
+        Plate.rotation = 0;
+
+        var receiver = function () {
+            this.x = 0;
+            this.y = 0;
+            this.rotation = 0;
+        }
+        receiver.prototype.draw = function (ctx) {
+            ctx.save();
+            ctx.translate(this.x, this.y);
+            ctx.rotate(this.rotation);
+
+            ctx.beginPath();
+            ctx.fillStyle = "black";
+            ctx.fillRect(200, -10, 50, 20);
+
+
+            ctx.restore();
+        }
+        var Receiver = new receiver();
+        Receiver.x = 350;
+        Receiver.y = 250;
+        Receiver.rotation = 0;
+
+        var loc; //相对于canvas坐标的位置；
+        var isMouseDown = false;
+        var paused = false;
+        var count = 0;
+        var lightindensity;
+
+        Plate.draw(ctx);
+        Laser.draw(ctx);
+        Receiver.draw(ctx);
+        drawinfo();
+        canvas.addEventListener('mousedown', function (e) {
+            isMouseDown = true;
+        }, false)
+        canvas.addEventListener('mousemove', function (e) {
+            loc = windowToCanvas(e.clientX, e.clientY);
+            if (isMouseDown == true && isPointInPlate(loc)) {
+                requestAnimationFrame(drawFramPlate);
+            }
+            else if (isMouseDown == true && isPointInReceiver(loc)) {
+                requestAnimationFrame(drawFramReceiver);
+            }
+        }, false)
+        canvas.addEventListener('mouseup', function (e) {
+            isMouseDown = false;
+        }, false)
+        canvas.addEventListener('click', function (e) {
+            var loc = windowToCanvas(e.clientX, e.clientY);
+            if (isPointInlaser(loc)) {
+                paused = !paused;
+            }
+            if (paused) {
+                drawFrameLight();
+            }
+            else {
+                ctx.clearRect(0, 0, 800, 500);
+                ctx.fillStyle = "silver";
+                ctx.fillRect(0, 0, 800, 500);
+                Plate.draw(ctx);
+                Laser.draw(ctx);
+                Receiver.draw(ctx);
+                drawinfo();
+            }
+            if (isPointInbutton(loc)) {
+                writetotable();
+            }
+        }, false)
+        canvas.onmousemove = function (e) {
+            var loc = windowToCanvas(e.clientX, e.clientY);
+            if (isPointInPlate(loc) || isPointInReceiver(loc) || isPointInlaser(loc) || isPointInbutton(loc)) {
+                canvas.style.cursor = "pointer";
+            }
+            else {
+                canvas.style.cursor = "auto";
+            }
+        }
+        function isPointInPlate(loc) {
+            ctx.beginPath();
+            ctx.arc(350, 250, 100, 0, 2 * Math.PI, true);
+            return ctx.isPointInPath(loc.x, loc.y);
+        }
+        function isPointInReceiver(loc) {
+            var dx = loc.x - 350;
+            var dy = loc.y - 250;
+            Receiver.rotation = Math.atan2(dy, dx);
+            ctx.save();
+            ctx.translate(350, 250);
+            ctx.rotate(Receiver.rotation);
+            ctx.beginPath();
+            ctx.rect(200, -10, 50, 20);
+            ctx.restore();
+            return ctx.isPointInPath(loc.x, loc.y);
+        }
+        function isPointInlaser(loc) {
+            ctx.beginPath();
+            ctx.rect(85, 245, 10, 10);
+            return ctx.isPointInPath(loc.x, loc.y);
+        }
+        function isPointInbutton(loc) {
+            ctx.beginPath();
+            ctx.rect(675, 150, 50, 30);
+            return ctx.isPointInPath(loc.x, loc.y);
+        }
+        function drawFramPlate() {
+            var dx = loc.x - Plate.x;
+            var dy = loc.y - Plate.y;
+            Plate.rotation = Math.atan2(dy, dx);
+            ctx.clearRect(0, 0, 800, 500);
+            ctx.fillStyle = "silver";
+            ctx.fillRect(0, 0, 800, 500);
+            Plate.draw(ctx);
+            Laser.draw(ctx);
+            Receiver.draw(ctx);
+            drawinfo();
+            drawFrameLight();
+        }
+        function drawFramReceiver() {
+            var dx = loc.x - 350;
+            var dy = loc.y - 250;
+            Receiver.rotation = Math.atan2(dy, dx);
+            ctx.clearRect(0, 0, 800, 500);
+            ctx.fillStyle = "silver";
+            ctx.fillRect(0, 0, 800, 500);
+            Plate.draw(ctx);
+            Laser.draw(ctx);
+            Receiver.draw(ctx);
+            drawinfo();
+            drawFrameLight();
+        }
+        function drawFrameLight() {
+            ctx.save();
+
+            ctx.beginPath();
+            ctx.moveTo(160, 250);
+            ctx.lineTo(350, 250);
+            ctx.lineTo(350 + 200 * Math.cos(2 * Plate.rotation), 250 + 200 * Math.sin(2 * Plate.rotation));
+            ctx.lineWidth = 1;
+            ctx.strokeStyle = "red";
+            ctx.stroke();
+
+            ctx.restore();
+        }
+
+        function drawinfo() {
+            var n_prism = 1.515;
+            var n = 1.384;
+            var dielectric_metal = math.complex(-9.454, 1.5);
+            var angles = -Plate.rotation;
+            var Thickness = 78.7E-9;
+            var I0 = 900;
+            var lambda = 635E-9;
+            var k0 = (2 * math.PI) / lambda;
+
+
+            var dielectric_prism = math.square(n_prism);
+            var dielectric = math.square(n);
+            var k_prism = k0 * math.sqrt(dielectric_prism) * math.cos(angles);
+            var k_metal = math.multiply(k0, math.sqrt(math.complex(dielectric_metal.re - (dielectric_prism * math.square(math.sin(angles))), dielectric_metal.im)));
+            var k = math.multiply(k0, math.sqrt(dielectric - (dielectric_prism * math.square(math.sin(angles)))));
+            var Z_prism = dielectric_prism / k_prism;
+            var Z_metal = math.divide(dielectric_metal, k_metal);
+            var Z = math.divide(dielectric, k);
+            var R12 = math.divide(math.subtract(Z_prism, Z_metal), math.add(Z_prism, Z_metal));
+            var R23 = math.divide(math.subtract(Z_metal, Z), math.add(Z_metal, Z));
+            var r = math.divide(math.add(R12, math.multiply(R23, math.exp(math.multiply(2, math.i, k_metal, Thickness)))), math.add(1, (math.multiply(R12, R23, math.exp(math.multiply(2, math.i, k_metal, Thickness))))));
+            var R = math.square(math.abs(r));
+            lightindensity = math.multiply(R, I0);
+            ctx.save();
+
+            ctx.beginPath();
+            ctx.fillStyle = "rgba(200,0,0,0.3)";
+            ctx.fillRect(620, 50, 160, 90);
+            ctx.restore();
+
+            ctx.save();
+            ctx.fillStyle = "rgba(255,255,255,0.6)";
+            ctx.fillRect(675, 150, 50, 30);
+            ctx.font = "15px Geogia";
+            ctx.fillStyle = "black";
+            ctx.fillText("记录", 685, 170);
+            ctx.restore();
+
+            ctx.font = "20px Geogia";
+            ctx.fillStyle = "black";
+
+            if (paused) {
+                if (Receiver.rotation > 2 * Plate.rotation - 0.05 && Receiver.rotation < 2 * Plate.rotation + 0.05) {
+                    ctx.fillText("入射角：" + -(Plate.rotation * 180 / Math.PI).toFixed(2) + "°", 630, 80);
+                    ctx.fillText("反射光强：" + lightindensity.toFixed(1), 630, 120);
+                }
+                else {
+                    ctx.fillText("入射角：" + -(Plate.rotation * 180 / Math.PI).toFixed(2) + "°", 630, 80);
+                    ctx.fillText("反射光强：" + Math.random().toFixed(3) * 100, 630, 120);
+                }
+            }
+            else {
+                ctx.fillText("入射角：", 630, 80);
+                ctx.fillText("反射光强：", 630, 120);
+            }
+        }
+        function windowToCanvas(x, y) {
+            var bbox = canvas.getBoundingClientRect();
+            return {
+                x: x - bbox.left * (canvas.width / bbox.width),
+                y: y - bbox.top * (canvas.height / bbox.height)
+            };
+        }
+        var arr = new Array(new Array());
+        function writetotable() {
+            var atemp = -(Plate.rotation * 180 / Math.PI).toFixed(2);
+            var btemp = Number(lightindensity.toFixed(1));
+            var x = document.getElementById('tr1').insertCell(-1);
+            x.innerHTML = atemp;
+            var y = document.getElementById('tr2').insertCell(-1);
+            y.innerHTML = btemp;
+
+            arr.push([atemp, btemp]);
+        }
+
+        arr.shift();
+    </script>
+    <script language="JavaScript">
+        function printchart() {
+            $(document).ready(function () {
+                var chart = {
+                    type: 'scatter',
+                    zoomType: 'xy'
+                };
+                var title = {
+                    text: '反射光强随入射角的变化'
+                };
+                var xAxis = {
+                    title: {
+                        enabled: true,
+                        text: '入射角 (°)'
+                    },
+                    startOnTick: true,
+                    endOnTick: true,
+                    showLastLabel: true
+                };
+                var yAxis = {
+                    title: {
+                        text: '反射光强'
+                    }
+                };
+                var legend = {
+                    layout: 'vertical',
+                    align: 'left',
+                    verticalAlign: 'top',
+                    x: 100,
+                    y: 70,
+                    floating: true,
+                    backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF',
+                    borderWidth: 1
+                }
+                var plotOptions = {
+                    scatter: {
+                        marker: {
+                            radius: 5,
+                            states: {
+                                hover: {
+                                    enabled: true,
+                                    lineColor: 'rgb(100,100,100)'
+                                }
+                            }
+                        },
+                        states: {
+                            hover: {
+                                marker: {
+                                    enabled: false
+                                }
+                            }
+                        },
+                        tooltip: {
+                            headerFormat: '<b>{series.name}</b><br>',
+                            pointFormat: '{point.x} °, {point.y} '
+                        }
+                    }
+                };
+                var series = [{
+                    name: '空气',
+                    color: 'rgba(223, 83, 83, .5)',
+                    data: arr
+                }];
+
+                var json = {};
+                json.chart = chart;
+                json.title = title;
+                json.legend = legend;
+                json.xAxis = xAxis;
+                json.yAxis = yAxis;
+                json.series = series;
+                json.plotOptions = plotOptions;
+                $('#container').highcharts(json);
+
+            });
+        }
+    </script>
+</body>
+</html>

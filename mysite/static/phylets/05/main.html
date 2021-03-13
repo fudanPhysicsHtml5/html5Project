@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Pendulum</title>
+        
+        <style>
+            body
+            {
+                background: #eeeeee;
+                margin: 20px;
+            }
+            #myCanvas
+            {
+                background: skyblue;
+                display: block;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h2>发射小球の小程序</h2>
+        <a href="http://phylab.fudan.edu.cn" target="_blank">访问实验中心主页</a>
+        <h4>操作指南</h4>
+        <ul>
+            <li><b>鼠标</b>拖动小球以调整弹弓长度以及角度</li>
+            <li>点击<b>开始</b>以发射小球</li>
+            <li>小球落地后，点击<b>重置</b>使小球回归原位</li>
+            <li><i>停止</i>状态下，拖动进度条调整弹性系数以及小球质量</li>
+            <li>canvas右下角显示小球落地位置与弹弓的距离</li>
+        </ul>
+        <p> 假设弹弓类似于弹簧，其施加的力等同于拉伸长度与弹性系数k的乘积。<br>
+            假设小球在加速过程中重力作用可以忽略，最终以匀速出射。<br>
+            忽略空气阻力作用。</p>
+        
+        <canvas id="myCanvas" width="1000" height="400"></canvas>
+        <input id="animateButton" class="controls" type="button" value="开始"/>
+        <input id="animateButton2" class='controls' type='button' value="重置">
+        <br>
+        弹性系数：<input id= 'elasticity' class="controls" type="range" min='10' max="100" value="40">
+        弹性系数：<span id = 'kvalue'>--</span><br>
+        小球质量：<input id= 'weight' class="controls" type="range" min="10" max="100" value="40">
+        小球质量：<span id="mvalue">--</span><br>
+        落地距离：<span id="distance">--</span>
+
+
+        <script src="utils.js"></script>
+
+
+        <script src="test3.js"></script>
+     </body>
+   
+</html>
