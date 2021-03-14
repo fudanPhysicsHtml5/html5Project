@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>X-Ray Diffraction</title>
+        
+        <style>
+            body
+            {
+                background: #eeeeee;
+                margin: 20px;
+            }
+            #myCanvas
+            {
+                background: skyblue;
+                display: block;
+            }
+            .controls
+            {
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+            #radiusRange
+            {
+                vertical-align: -5px;
+            }
+        </style>
+
+    </head>
+
+    <body>
+        <h2>X射线衍射实验</h2>
+        <hr/>
+        是否考虑原子形状因子影响：<input id="formFactor" type="checkbox" value="false"/>
+        <br>
+        X射线波长/pm：<input id="wavelength" type="number" step=0.1 max=100 min=0.1 value=10 onchange="changeWavelength()">
+        <br> 
+        晶格常数/pm：<input id="latticeRange" class="controls" type="range" min="0.1" max="100" step=0.1 value="100" onchange="changeLatticeConstant()" />
+        <span id="latticeConstant">--</span>
+        <br>
+        入射角度/°：<input id="inAngle" type="number" step=0.1 max=180 min=0 value=45 onchange="changeInAngle()">
+        <br>
+        接收角度/°：<input id="outAngle" type="number" step=0.1 max=180 min=0 value=45 onchange="changeOutAngle()">
+        <br>
+        晶胞类型：
+        <select id="latticeType" onchange="changeLattice()">
+            <option value="sc">Simple Cubic</option>
+            <option value="fcc">Face Centered Cubic</option>
+            <option value="bcc">Body Centered Cubic</option>
+        </select>
+        <br>
+        <canvas id="Canvas" width="600" height="300"></canvas>
+        <br>
+        X射线相对强度：<span id="amplitude">--</span>
+        <br>
+        Rotating-Crystal方法：<input id="animateButton" class="controls" type="button" value="开始"/>
+        <br>
+        相对光强A与发射器接收器夹角2Θ关系图：
+        <br>
+        <canvas id="figure" width="1000" height="100"></canvas>
+        <br>
+        <input id="testButton" class="controls" type="button" value="测试"/>
+        <br>
+        Test:<span id="test">--</span>
+
+        <script src="utils.js"></script>
+        <script src="diffraction.js"></script>
+</html>

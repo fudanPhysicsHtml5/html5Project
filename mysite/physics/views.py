@@ -7,14 +7,20 @@ from django.contrib import auth
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect
+import zipfile
 
 projectPath = os.path.join(os.path.dirname(os.path.dirname(__file__)), "projectFile")
 
 def index(request):
-    if request.user.is_authenticated:
-        return HttpResponse("is authenticated")
-    else:
-        return HttpResponse("has not logged in")
+    #if request.user.is_authenticated:
+        #return HttpResponse("is authenticated")
+    #else:
+        #return HttpResponse("has not logged in")
+    template = loader.get_template('index.html')
+    projects = Projects.objects.all()
+    context = {"Projects": projects}
+    return render(request, 'index.html', context)
+    
 
 def download(request):
     if request.method=='GET':
@@ -28,6 +34,7 @@ def download(request):
         response['content_type'] = 'application/octet-stream'
         response['Content-Disposition'] ='attachment;filename="models.html"'
     return response
+
 
 def upload(request):
     response = HttpResponse()
@@ -48,14 +55,17 @@ def upload(request):
             for i in file:
                 fd.write(i)
         response.content="上传成功"
+
+        # unarchive
+        zip_file = zipfile.ZipFile(filePath)
+        print(filePath)
+        zip_list = zip_file.namelist()
+        for f in zip_list:
+            zip_file.extract(f, fileDir)
         return response
     response.content="上传失败"
     return response
 
-def model(request):
-    template = loader.get_template('model.html')
-    context = {'document': 'test', 'list': 'list1'}
-    return render(request, 'model.html', context)
 
 def log_in(request):
     if request.method == "GET":
@@ -69,7 +79,6 @@ def log_in(request):
             return HttpResponse("successfully logged in")
         else:
             return HttpResponse("login failed, you entered a wrong username or password")
-            
         
         
 def sign_up(request):
@@ -82,7 +91,8 @@ def sign_up(request):
         password = request.POST.get("password")
         User.objects.create_user(username=username, password=password)
         return redirect("/physics")
-    
+
+
 def change_password(request):
     if request.method == "POST":
         username = request.POST.get("username")
@@ -95,7 +105,12 @@ def change_password(request):
         return HttpResponse("successfully change the password")
     else:
         return HttpResponse("reseting password failed")
-    
+
+
 def log_out(request):
     logout(request)
     return redirect("/physics/")
+
+# admin html
+#def add(request):
+    
