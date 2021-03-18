@@ -69,14 +69,17 @@ def upload(request):
 
 def log_in(request):
     if request.method == "GET":
-        return
+        return render(request, '../templates/login.html', locals())
     if request.method == "POST":
         username = request.POST["username"]
         password = request.POST["password"]
         user = authenticate(username=username, password=password)
+
         if user is not None:
             login(request, user)
-            return HttpResponse("successfully logged in")
+            print('hello')
+            return redirect('/index/')
+
         else:
             return HttpResponse("login failed, you entered a wrong username or password")
         
