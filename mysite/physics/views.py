@@ -90,7 +90,7 @@ def sign_up(request):
             return HttpResponse("the username has been signed, please choose another username")
         password = request.POST.get("password")
         User.objects.create_user(username=username, password=password)
-        return redirect("/physics")
+        return redirect("/physics/index")
 
 
 def change_password(request):
@@ -109,7 +109,7 @@ def change_password(request):
 
 def log_out(request):
     logout(request)
-    return redirect("/physics/")
+    return redirect("/physics/index")
 
 # admin html
 #def add(request):
