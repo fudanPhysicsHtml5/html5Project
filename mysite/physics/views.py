@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 import os
 from django.template import loader
-from physics.models import Projects, UploadProjects
+from physics.models import Projects
 from django.contrib import auth
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -17,7 +17,7 @@ def index(request):
     #else:
         #return HttpResponse("has not logged in")
     template = loader.get_template('index.html')
-    projects = Projects.objects.all()
+    projects = Projects.objects.filter(status=True)
     context = {"Projects": projects}
     return render(request, 'index.html', context)
     

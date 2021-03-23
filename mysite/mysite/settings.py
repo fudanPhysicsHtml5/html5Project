@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'physics',
     'corsheaders',
+    'admin_page',
 ]
 
 MIDDLEWARE = [
@@ -59,7 +60,7 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates'), os.path.join(BASE_DIR, 'admin_page/static')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -191,3 +192,6 @@ CORS_ALLOW_HEADERS = (
  'x-requested-with',
  'Pragma',
 )
+
+SESSION_COOKIE_AGE = 60 * 60 * 24
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True

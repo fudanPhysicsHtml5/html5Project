@@ -20,5 +20,6 @@ from physics import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('physics/', include('physics.urls')),
-    path('login/', views.log_in)
+    path('login/', views.log_in),
+    path('admin_page/', include('admin_page.urls')),
 ]
