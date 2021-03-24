@@ -31,7 +31,6 @@
 
   ├── static                 #静态页面, js
 
--
   └── templates        #动态页面, html页面
 
 
