@@ -1,10 +1,9 @@
 <!doctype html>
+{% load static %}
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <title>登录</title>
   </head>
@@ -33,6 +32,6 @@
     <script src="https://cdn.bootcss.com/popper.js/1.15.0/umd/popper.js"></script>
     <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.1/jquery.form.min.js" integrity="sha384-tIwI8+qJdZBtYYCKwRkjxBGQVZS3gGozr3CtI+5JF/oL1JmPEHzCEnIKbDbLTCer" crossorigin="anonymous"></script>
-    <script src="../static/js/admin_login.js"></script>
+    <script src="{% static 'js/admin_login.js' %}"></script>
   </body>
 </html>
