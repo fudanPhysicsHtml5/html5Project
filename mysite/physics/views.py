@@ -3,11 +3,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 import os
 from django.template import loader
-<<<<<<< HEAD
-from physics.models import Projects
-=======
 from .models import Project
->>>>>>> 40991ecf48ed741deb34075231e7a532568e524f
 from django.contrib import auth
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -23,18 +19,11 @@ def index(request):
         #return HttpResponse("is authenticated")
     #else:
         #return HttpResponse("has not logged in")
-<<<<<<< HEAD
-    template = loader.get_template('index.html')
-    projects = Projects.objects.filter(status=True)
-    context = {"Projects": projects}
-    return render(request, 'index.html', context)
-=======
     # template = loader.get_template('index.html')
     projects = Project.objects.all()
 
     return render(request, 'index/index.html', {'projects': projects})
->>>>>>> 40991ecf48ed741deb34075231e7a532568e524f
-    
+
 
 def download(request):
     if request.method=='GET':
@@ -71,32 +60,9 @@ def upload(request):
     return render(request, 'upload/upload.html', {'form': form})
 
 
-<<<<<<< HEAD
-        else:
-            return HttpResponse("login failed, you entered a wrong username or password")
-        
-        
-def sign_up(request):
-    if request.method == "POST":
-        username = request.POST.get("username")
-        # if user_name_exists;
-        user_list = User.objects.filter(username = username)
-        if len(user_list) > 0:
-            return HttpResponse("the username has been signed, please choose another username")
-        password = request.POST.get("password")
-        User.objects.create_user(username=username, password=password)
-        return redirect("/physics/index")
-=======
->>>>>>> 40991ecf48ed741deb34075231e7a532568e524f
 
 
 
-
-<<<<<<< HEAD
-def log_out(request):
-    logout(request)
-    return redirect("/physics/index")
-=======
 # def upload(request):
 #     response = HttpResponse()
 #     response['Access-Control-Allow-Origin'] = '*'
@@ -174,7 +140,6 @@ def log_out(request):
 # def log_out(request):
 #     logout(request)
 #     return redirect("/physics/")
->>>>>>> 40991ecf48ed741deb34075231e7a532568e524f
 
 # admin html
 #def add(request):

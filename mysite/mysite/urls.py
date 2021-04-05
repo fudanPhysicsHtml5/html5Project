@@ -22,11 +22,6 @@ urlpatterns = [
     path('', include('physics.urls')),
     path('admin/', admin.site.urls),
     path('physics/', include('physics.urls')),
-<<<<<<< HEAD
-    path('login/', views.log_in),
+    path('accounts/', include('accounts.urls')),
     path('admin_page/', include('admin_page.urls')),
-]
-=======
-    path('accounts/', include('accounts.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
->>>>>>> 40991ecf48ed741deb34075231e7a532568e524f

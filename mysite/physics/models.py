@@ -1,32 +1,6 @@
 from django.db import models
 from django.conf import settings
 
-
-# Create your models here.
-<<<<<<< HEAD
-class Projects(models.Model):
-    name = models.CharField(max_length=200, primary_key = True)
-    author = models.CharField(max_length=200, null=True)
-    html_path = models.CharField(max_length=200, null=True)
-    pic_path = models.CharField(max_length=200, null=True)
-    #reason = models.CharField(max_length=200, null=True) #why delete the project
-    status = models.BooleanField(default=False) #state of projects, has or has not been reviewed
-=======
-# class Projects(models.Model):
-#     name = models.CharField(max_length=200, primary_key=True)
-#     html_path = models.CharField(max_length=200, null=True)
-#     pic_path = models.CharField(max_length=200, null=True)
-#
-#
-# class UploadProjects(models.Model):
-#     name = models.CharField(max_length=200, primary_key = True)
-#     path = models.CharField(max_length=200)
-#
-#     def add(self):
-#         projects = Projects(name=self.name, path=self.path)
-#         projects.save()
-
-
 class Project(models.Model):
     """ The Project Models """
 
@@ -44,4 +18,3 @@ class Comment(models.Model):
     post = models.ForeignKey(Project, related_name='comments', on_delete=models.CASCADE)
     text = models.TextField(max_length=2048, blank=True)
     comment_date = models.DateTimeField(auto_now_add=True)
->>>>>>> 40991ecf48ed741deb34075231e7a532568e524f
