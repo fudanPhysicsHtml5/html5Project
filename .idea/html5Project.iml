@@ -18,6 +18,7 @@
       <sourceFolder url="file://$MODULE_DIR$/mysite/static" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/mysite/physics" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/mysite/mysite" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/mysite/accounts" isTestSource="false" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.9 (webDev)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
