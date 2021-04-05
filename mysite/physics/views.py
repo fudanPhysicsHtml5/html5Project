@@ -10,7 +10,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect
 import zipfile
 from .forms import UploadProjectForm, CommentForm
-
+from .models import Project
 
 projectPath = os.path.join(os.path.dirname(os.path.dirname(__file__)), "projectFile")
 
@@ -19,10 +19,10 @@ def index(request):
         #return HttpResponse("is authenticated")
     #else:
         #return HttpResponse("has not logged in")
-    template = loader.get_template('index.html')
-    # projects = Projects.objects.all()
-    # context = {"Projects": projects}
-    return render(request, 'index.html')
+    # template = loader.get_template('index.html')
+    projects = Project.objects.all()
+
+    return render(request, 'index/index.html', {'projects': projects})
     
 
 def download(request):
