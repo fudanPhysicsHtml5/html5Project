@@ -29,6 +29,7 @@ def superuser_required(view_func):
 @superuser_required
 def manage_upload_projects(request):
     '''manage uploaded projects'''
+
     if (request.method == 'GET'):
         upload_projects = True
         manage_projects = False
@@ -44,19 +45,22 @@ def manage_upload_projects(request):
     
 @superuser_required
 def manage_projects(request):
-    if request.user.is_superuser:
-        if (request.method == 'GET'):
-            upload_projects = False
-            manage_projects = True
-            template = loader.get_template('admin.html')
-            projects = Projects.objects.filter(status = True)
-            context = {"Projects": projects, "upload_projects": upload_projects, "manage_projects": manage_projects, "url_path": url_path}
-            return render(request, 'admin.html', context)
+    '''manage launched projects'''
+
+    if (request.method == 'GET'):
+        upload_projects = False
+        manage_projects = True
+        template = loader.get_template('admin.html')
+        projects = Projects.objects.filter(status = True)
+        context = {"Projects": projects, "upload_projects": upload_projects, "manage_projects": manage_projects, "url_path": url_path}
+        return render(request, 'admin.html', context)
     return HttpResponse("no permission")
    
    
 @superuser_required       
 def add(request):
+    '''launch a project'''
+
     if request.method == "GET":
         name = request.GET.get("name")
         project = Projects.objects.get(name=name)
@@ -68,6 +72,8 @@ def add(request):
 
 @superuser_required 
 def delete(request):
+    '''delete a project'''
+
     if request.method == "POST":
         name = request.GET.get("name")
         project = Projects.objects.get(name=name)
@@ -80,6 +86,8 @@ def delete(request):
 
 
 def log_in(request):
+    '''login for admin'''
+
     if request.user.is_superuser:
         return redirect('/admin_page/upload_projects')
     if request.method == "GET":
@@ -98,6 +106,8 @@ def log_in(request):
         
 @superuser_required
 def log_out(request):
+    '''logout for admin'''
+
     logout(request)
     return redirect("/admin_page/log_in")
  
