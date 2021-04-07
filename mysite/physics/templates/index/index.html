@@ -16,19 +16,19 @@
   <div class="album py-5 bg-light">
     <div class="container">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        {% for project in Projects %}
-        <div class="col">
+        {% for project in projects %}
+        <div class="col-4">
           <div class="card shadow-sm">
-            <img src="{{ project.pic_path }}" width="100%" height="225">
+            <img src="{{ project.thumbnail.url }}" width="100%" height="225">
             <div class="card-body">
-              <p class="card-text">{{project.name}}</p>
+              <p class="card-text">{{ project.title }}</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <a href="{{ project.html_path }}">
+                  <a href="#">
                     <button type="button" class="btn btn-sm btn-outline-secondary">Open</button>
                   </a>
                 </div>
-                <small class="text-muted">Author: Chunliang Mu</small>
+                <small class="text-muted">Author: {{ project.user.username }}</small>
               </div>
             </div>
           </div>
@@ -40,13 +40,3 @@
   </div>
 </main>
 {% endblock %}
-
-{#<footer class="text-muted py-5">#}
-{#  <div class="container">#}
-{#    <p class="float-end mb-1">#}
-{#      <a href="#">Back to top</a>#}
-{#    </p>#}
-{#    <p class="mb-1"><a href="http://phylab.fudan.edu.cn/doku.php" target="_blank">Fudan Physics Teaching Lab</a></p>#}
-{#  </div>#}
-{#</footer>#}
-      

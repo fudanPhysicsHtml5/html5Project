@@ -1,6 +1,5 @@
 from django.contrib import admin
-from physics.models import Projects
+from physics.models import Project
 
 # Register your models here.
-admin.site.register(Projects)
-
+admin.site.register(Project)
