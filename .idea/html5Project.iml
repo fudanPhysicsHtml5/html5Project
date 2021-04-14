@@ -3,7 +3,7 @@
   <component name="FacetManager">
     <facet type="django" name="Django">
       <configuration>
-        <option name="rootFolder" value="$MODULE_DIR$/mysite" />
+        <option name="rootFolder" value="$MODULE_DIR$/fdu-physlet" />
         <option name="settingsModule" value="mysite/settings.py" />
         <option name="manageScript" value="manage.py" />
         <option name="environment" value="&lt;map/&gt;" />
@@ -14,11 +14,11 @@
   </component>
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/mysite" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/mysite/static" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/mysite/physics" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/mysite/mysite" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/mysite/accounts" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/fdu-physlet" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/fdu-physlet/static" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/fdu-physlet/physics" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/fdu-physlet/mysite" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/fdu-physlet/accounts" isTestSource="false" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.9 (webDev)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />

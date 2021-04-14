@@ -26,7 +26,7 @@ def register(request):
             # authenticate and log user in, then redirect to newsFeeds
             login(request, new_user)
             # TODO
-            return redirect(request, 'physics/')
+            return redirect(reverse('physics:index'))
 
     else:
         form = RegistrationForm()

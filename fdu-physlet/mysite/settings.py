@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'physics',
     'corsheaders',
-    'admin_page',
+    # 'admin_page',
     'accounts'
 ]
 
@@ -60,7 +60,9 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates'), os.path.join(BASE_DIR, 'libs', 'templates', 'admin_page/static')],
+        # 'DIRS': [os.path.join(BASE_DIR, 'templates'), os.path.join(BASE_DIR, 'libs', 'templates', 'admin_page/static')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates'), os.path.join(BASE_DIR, 'libs', 'templates')],
+
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -194,8 +196,6 @@ CORS_ALLOW_HEADERS = (
  'Pragma',
 )
 
-SESSION_COOKIE_AGE = 60 * 60 * 24
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 AUTH_USER_MODEL = 'accounts.User'
 LOGIN_REDIRECT_URL = '/physics/'
