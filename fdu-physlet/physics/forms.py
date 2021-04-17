@@ -7,7 +7,7 @@ class UploadProjectForm(forms.ModelForm):
 
     class Meta:
         model = Project
-        fields = ('title', 'thumbnail', 'project_file')
+        fields = ('title', 'thumbnail', 'upload_file')
 
 
 class CommentForm(forms.Form):

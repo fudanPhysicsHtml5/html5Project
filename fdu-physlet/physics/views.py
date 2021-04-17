@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.http import HttpResponse
 import os
+import zipfile
 from django.template import loader
 from .models import Project
 from django.contrib import auth
@@ -11,6 +12,7 @@ from django.shortcuts import redirect
 import zipfile
 from .forms import UploadProjectForm, CommentForm
 from .models import Project
+from settings import MEDIA_ROOT, BASE_DIR
 projectPath = os.path.join(os.path.dirname(os.path.dirname(__file__)), "projectFile")
         
         
@@ -49,12 +51,15 @@ def upload(request):
         # validate form based on form definition
         if form.is_valid():
             project = form.save(commit=False)
-            # add the post user to the existing form
-            # this method can be declared in the postForm easily by overiding the save() method
-            # and adding user before saving.
-            # See implementation of CommentForm
             project.user = request.user
+            pj_dir = os.path.join(MEDIA_ROOT, "projects", request.user.username, form.cleaned_data['title'])
+            os.mkdir(pj_dir)
+            zip_path = os.path.join(BASE_DIR, project.upload_file.path)
+            with zipfile.ZipFile(zip_path) as f:
+                f.extractall(pj_dir)
+            project.index_path = os.path.join(pj_dir, 'index.html')
             project.save()
+
             return redirect('physics:index')
     else:
         form = UploadProjectForm()
