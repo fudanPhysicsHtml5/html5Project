@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 
+
 class Project(models.Model):
     """ The Project Models """
 
@@ -11,6 +12,7 @@ class Project(models.Model):
     upload_date = models.DateTimeField(auto_now_add=True)
     is_reviewed = models.BooleanField(default=False)
     index_path = models.CharField(max_length=512)
+
 
 class Comment(models.Model):
     """ The comments Models """

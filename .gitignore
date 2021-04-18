@@ -1,1 +1,24 @@
 # Created by .ignore support plugin (hsz.mobi)
+__pycache__/
+accounts/__pycache__/
+accounts/migrations/0001_initial.py
+accounts/migrations/__pycache__/
+accounts/templatetags/__pycache__/
+admin_page/__pycache__/
+admin_page/migrations/__pycache__/
+media/projects/
+media/thumbnails/01_8o9nFE1.png
+media/thumbnails/01_AfuRscA.png
+media/thumbnails/01_CHIFBW2.png
+media/thumbnails/01_EWmhL9V.png
+media/thumbnails/01_LMKPf3W.png
+media/thumbnails/01_bwUcbBd.png
+media/thumbnails/02.png
+media/thumbnails/04_T88V8Rj.png
+mysite/__pycache__/
+physics/__pycache__/
+physics/migrations/0001_initial.py
+physics/migrations/0002_auto_20210416_0013.py
+physics/migrations/0003_auto_20210418_0314.py
+physics/migrations/__pycache__/
+static/assets/dist/bootstrap3-ie10-viewport-bug-workaround/

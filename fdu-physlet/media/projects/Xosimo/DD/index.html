@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Demo</title>
+        <style>
+            body
+            {
+                background: #eeeeee;
+                margin: 20px;
+            }
+            #myCanvas
+            {
+                background: skyblue;
+                display: block;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <h2>光栅光谱</h2>
+        <hr/>
+        <ul>
+            <li>移动滑块改变缝间距(10-40pixel)</li>
+            <li>移动滑块改变缝屏距(200-1100pixel)</li>
+            <li>画面高度5cm</li>
+        </ul>
+        缝间距：<input id="Range1" class="controls" type="range" min="10" max="40" value="20"/>
+        缝屏距：<input id="Range2" class="controls" type="range" min="200" max="1100" value="1030"/>
+        缝宽：<input id="Range3" class="controls" type="range" min="1" max="4" value="1"/>
+        缝数:<input id="Range4" class="controls" type="range" min="2" max="6" value="4"/>
+        <canvas id="myCanvas" width="1200" height="500"></canvas>
+        
+        <script src="utils.js"></script>
+        <script src="ForthWork.js"></script>
+    </body>
+</html>
