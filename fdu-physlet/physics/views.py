@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.http import HttpResponse
 import os
+import pathlib
 import zipfile
 from django.template import loader
 from .models import Project
@@ -12,7 +13,7 @@ from django.shortcuts import redirect
 import zipfile
 from .forms import UploadProjectForm, CommentForm
 from .models import Project
-from settings import MEDIA_ROOT, BASE_DIR
+from mysite.settings import MEDIA_ROOT, BASE_DIR
 projectPath = os.path.join(os.path.dirname(os.path.dirname(__file__)), "projectFile")
         
         
@@ -52,14 +53,14 @@ def upload(request):
         if form.is_valid():
             project = form.save(commit=False)
             project.user = request.user
+            project.save()
             pj_dir = os.path.join(MEDIA_ROOT, "projects", request.user.username, form.cleaned_data['title'])
-            os.mkdir(pj_dir)
-            zip_path = os.path.join(BASE_DIR, project.upload_file.path)
+            pathlib.Path(pj_dir).mkdir(parents=True, exist_ok=True)
+            print(project.upload_file.path)
+            zip_path = os.path.join(MEDIA_ROOT, project.upload_file.path)
+            project.index_path = os.path.join(pj_dir, 'index.html')
             with zipfile.ZipFile(zip_path) as f:
                 f.extractall(pj_dir)
-            project.index_path = os.path.join(pj_dir, 'index.html')
-            project.save()
-
             return redirect('physics:index')
     else:
         form = UploadProjectForm()
