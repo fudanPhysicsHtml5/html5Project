@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title> lifegame </title>
+
+</head>
+<body>
+<h2>LifeGame </h2>
+<h5>designed by 陶晓岚</h5>
+<style>
+    body{
+        background: #F0F8FF;
+        margin: 30px;
+    }
+    h5{
+        color: darkgrey;
+
+    }
+</style>
+<a href="http://phylab.fudan.edu.cn" target="_blank">访问实验中心主页</a>
+<h3>生命游戏规则</h3>
+<ul>
+    <li>每个生命都有生和死两种状态，如果该格子生就显示黑色，死则显示白色。</li>
+    <li>1． 如果一个细胞周围有3个细胞为生（一个细胞周围共有8个细胞），则该细胞为生（即该细胞若原先为死，则转为生，若原先为生，则保持不变）</li>
+    <li>2． 如果一个细胞周围有2个细胞为生，则该细胞的生死状态保持不变；</li>
+    <li>3． 在其它情况下，该细胞为死（即该细胞若原先为生，则转为死，若原先为死，则保持不变）</li>
+
+</ul>
+
+<i>操作要求</i>
+<ul>
+    <li>点击<b>start</b>键开始运行，每半秒更新一次，点击<b>stop</b>停止更新</li>
+    <li>点击<b>step</b>进行步进操作，每次点击更新一次</li>
+    <li>在<b>stop</b>状态下，调整<b>random cells</b>并点击<b>reset</b>,生成相当数目的随机存活细胞</li>
+    <li>同时，你也可以利用 <b><i>鼠标</i></b>直接点击格点以改变细胞生死状态</li>
+</ul>
+<canvas id="game"></canvas><br>
+
+    <p>random cells(between 0 to 2000):</p>
+<input class="controls" id='numbers' max="2000" min="0" type="range" value="1000">
+
+
+<input id="animateButton" class="controls" type="button" value="start"/>
+
+<button onclick="step()">step</button>
+<button onclick="reset()">reset</button>
+运行状态：<span id="isrun" >--</span>
+存活细胞数：<span id="livingcells">--</span>
+
+</body>
+<script src="lifegame2.js"></script>
+</html>
