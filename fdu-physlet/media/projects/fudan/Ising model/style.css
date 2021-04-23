@@ -1,0 +1,60 @@
+body {
+    font-family:"Times New Roman", Times, serif;
+}
+
+#主页 {
+    margin: 0 auto;
+    width: 1000px;
+    padding: 0px;
+    line-height: 1em;
+}
+
+#总控制盘 {
+    float: left;
+    color:black;
+    width: 480px;
+    height: 512px;
+    position: 'absolute';
+    left: 10px;
+    top: 10px;
+    border: 1px solid black;
+}
+
+.选择支 {
+  padding: 5px;
+}
+
+.数据 {
+    font-family: "宋体", Courier, monospace;
+    font-size: 12px;
+}
+
+#模型 {
+    float: right;
+    left: 220px;
+    top: 10px;
+    width: 512px;
+    height: 512px;
+    border: solid 1px black;
+
+}
+
+#控制盘 {
+    padding: 15px;
+}
+
+
+.输入值  {
+    position: relative; 
+    padding-right: 6px;
+    width: 7em; 
+    float: left;
+    text-align: right;
+}
+
+.输入  {
+    position: relative;
+    top: -6px;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 13px;
+}

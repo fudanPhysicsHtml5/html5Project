@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Optics</title>
+
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async
+                src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+
+        <style>
+            p {color: black;}
+            body 
+            {
+                background: #eeeeee;
+                margin: 50px;
+            }
+            #myCanvas
+            {
+                background: whitesmoke;
+                display: block;
+            }
+            .controls
+            {
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+        </style>
+    </head>
+
+
+    <body>
+        <h2>杨氏双缝干涉实验</h2>
+        <ul>
+            <li>
+                <img src="wiki_icon.jpg" alt="Wikipeida: " width="20" height="20">
+                <a href="https://zh.m.wikipedia.org/wiki/%E9%9B%99%E7%B8%AB%E5%AF%A6%E9%A9%97"target="_blank"> 双缝实验</a><br/>
+            </li>
+        </ul>
+        <hr/>
+
+        <h3>实验内容</h3>
+        <p>杨氏双缝干涉实验是用两个点波源作光的干涉实验的典型代表。</p>
+        <p>在普通单色光源前放一开有小孔的屏，作为单色点光源。在照明范围内再放一个开有两个小孔的屏。按照惠更斯原理，两个小孔将作为两个次波源向前发射次波（球面波），形成交叠的波场。在较远的地方放置一接收屏，屏上可以观测到一组几乎是平行的直线条纹。</p>
+        <p>两条相邻亮纹的条纹间隔为 \(Δx = {λD \over d}\)。</p>
+
+        <h3>实验演示</h3>
+        实验采用波长为 <span id="lambdashow">--</span> 的钠灯。</br>
+        屏幕距离D：<span id="dshow">--</span><input id="dRange" class="controls" type="range" min="200" max="400" value="300"/></br>
+        双孔间距d ：<span id="ddshow">--</span><input id="ddRange" class="controls" type="range" min="20" max="60" value="40"/></br>
+        <canvas id="myCanvas" width="600" height="300"></canvas>
+        条纹间隔：<span id="dx">--</span>
+                        
+        <script src="utils.js"></script>
+        <script src="interference.js"></script>
+
+        </br>
+
+        <h3>后续实验</h3>
+        <ul>
+            <li>第二个实验：时间相干性</li>
+            <li>第三个实验：电子干涉实验</li>
+        </ul>
+
+    </body>
+</html>

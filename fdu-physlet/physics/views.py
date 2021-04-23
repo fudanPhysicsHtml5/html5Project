@@ -24,18 +24,20 @@ def index(request):
     return render(request, 'index/index.html', {'projects': projects})
 
 
+@login_required
 def download(request, id):
     project = get_object_or_404(Project, id=id)
-    file_name = project.title+".zip"
-    if request.method=='GET':
+    file_name = project.title + ".zip"
+    
+    if request.method == "GET":
         file_path = project.upload_file.path
-        file = open(project.upload_file.path, "rb")
+        file = open(file_path, "rb")
         response = FileResponse(file)
-        response['Content-Disposition'] = 'attachment; filename='+file_name
-        response['content_type'] = 'application/zip'
+        response["Content-Disposition"] = 'attachment;filename=' + file_name
+        response["content-type"] = 'application/zip'
         return response
     else:
-        return HttpResponse("only accept GET request")
+        return HttpResponse("only accept GET response")
 
 
 @login_required
