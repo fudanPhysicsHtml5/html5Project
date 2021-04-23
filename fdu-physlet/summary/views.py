@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 
 
 def project_summary(request, id):
+    '''the project summary page'''
     project = get_object_or_404(Project, id=id)
     comments = Comment.objects.filter(project_id=id)
 

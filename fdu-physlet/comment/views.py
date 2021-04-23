@@ -8,6 +8,7 @@ from django.views.decorators.clickjacking import xframe_options_exempt
 # Create your views here.
 @xframe_options_exempt
 def post_comment(request, project_id, parent_comment_id=None):
+    '''add comment into database'''
     project = get_object_or_404(Project, id=project_id)
 
     if request.method == 'POST':
@@ -33,6 +34,7 @@ def post_comment(request, project_id, parent_comment_id=None):
             return HttpResponse("there is someting with the form, please rewrite it")
     
     elif request.method == "GET":
+        # commentform for reply
         comment_form = CommentForm()
         context = {
             'comment_form': comment_form,

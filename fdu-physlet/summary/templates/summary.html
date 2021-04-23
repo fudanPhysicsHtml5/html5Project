@@ -5,9 +5,11 @@
 <div class="container">
     <div class="row">
         <div class="col-10">
+            <!--thumbnail for the project-->>
             <div style="text-align: center">
                 <img src="{{ project.thumbnail.url }}" height="400">
             </div>
+            <!--button for the project-->>
             <div>
                 <a href="{{ project.index_path }}">
                     <button type="button" class="btn btn-danger btn-lg btn-block" style="width:100%">play</button>
@@ -129,6 +131,7 @@
 
 {% block script %}
 <script src="{% static 'jquery/jquery-3.3.1.js' %}"></script>
+
 <script>
     $(function(){
         $(".django-ckeditor-widget").removeAttr('style');

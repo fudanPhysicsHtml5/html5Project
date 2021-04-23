@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>HTML5入门</title>
+        <style>
+            body {
+                margin: 20px;
+                background-image: url("bg.jpg");
+                background-repeat: no-repeat;
+                background-position: 99% 10px;
+                background-size: 220px;
+            }
+            pre {
+                background: #efefef;
+                padding: 10px;
+            }
+            #content {
+                width: 140px;
+                border:solid 1px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>HTML5入门</h1>
+        
+        <ol id="content">
+            <li><a href="#ch1">简介</a></li>
+            <li><a href="#ch2">HTML</a></li>
+            <li><a href="#ch3">CSS</a></li>
+            <li><a href="#ch4">JavaScript</a></li>
+            <li><a href="#ch5">Canvas元素</a></li>
+            <li><a href="#ch6">参考资料</a></li>
+        </ol>
+
+        <hr/>
+
+        <h2 id="ch1">1 简介</h2>
+        <h3>1.1 HTML5简介</h3>
+        <h4>什么是HTML5？</h4>
+        <p>HTML5是HTML最新的修订版本，是下一代HTML标准。从广义上讲是一种网页开发技术。</p>
+        <h4>为什么选择HTML5？</h4>
+        <ul>
+            <li>iOS系统不支持Flash，且Flash技术落后，对设备的资源占用率较高。</li>
+            <li>现代的浏览器都支持HTML5，可以进行跨平台开发。</li>
+            <li>HTML5相较于上一代HTML标准，增加了一些新特性，例如用于绘画的Canvas元素、用于媒介回放的Video和Audio元素等，使移动设备可以支持多媒体。</li>
+        </ul>
+        <h3>1.2 本教程简介</h3>
+        <p>网页通常使用HTML、CSS、JavaScript三种语言共同开发。三者的关系如下：</p>
+        <ul>
+            <li>HTML定义网页的内容</li>
+            <li>CSS描述网页的布局</li>
+            <li>JavaScript控制网页的行为</li>
+        </ul>
+        <p>本教程通过<b>单摆实验</b>的例子介绍这三种语言及HTML5的Canvas元素，以搭建交互式的物理教学课件。部分小节末尾将给出运行结果，可点击查看。示例代码可通过该小节编号在相应文件夹中找到。</p>
+        <a href="code/1-2/pendulum.html" target="_blank">运行结果</a>
+        <h3>1.3 编辑器</h3>
+        <ul>
+            <li>普通文本编辑器即可编辑代码，如记事本等。</li>
+            <li>专业编辑器推荐：
+                <a href="https://code.visualstudio.com/" target="_blank">VS Code</a>、
+                <a href="http://www.sublimetext.com/" target="_blank">Sublime Text</a>等。</li>
+        </ul>
+        <p>新建文件时，HTML文件后缀名为.html，CSS文件后缀名为.css，JavaScript文件后缀名为.js。编辑完的文件无需额外编译，直接将HTML文件在浏览器中打开即可运行。</p>
+        <h3>1.4 调试器</h3>
+        <p>调试器用于Debug。<a href="https://developers.google.cn/web/tools/chrome-devtools/?hl=zh-cn" target="_blank">Chrome开发者工具</a>是一套内置于Google Chrome中的Web开发和调试工具，可通过快捷键<code>Ctrl+Shift+I</code>（Windows）或<code>Cmd+Opt+I</code>（Mac）打开。
+        其他浏览器的内置调试器请自行搜索。</p>
+        
+        <hr/>
+
+        <h2 id="ch2">2 HTML</h2>
+        <h3>2.1 简介</h3>
+        <p>超文本标记语言（HyperText Markup Language）是一种用于创建网页的标准标记语言，运行在浏览器上，由浏览器来解析。</p>
+        <h3>2.2 元素</h3>
+        <p>HTML文档由HTML元素定义。其语法为<code>&lt;开始标签&gt;元素内容&lt;/结束标签&gt;</code>。部分元素为空元素，在开始标签中结束，即<code>&lt;开始标签/&gt;</code>。元素可以嵌套，即在元素内容中包含元素。</p>
+        <p>示例代码：</p>
+        <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;/&gt;
+        &lt;title&gt;Pendulum&lt;/title&gt;
+    &lt;/head&gt;
+
+    &lt;body&gt;
+        &lt;h2&gt;单摆实验&lt;/h2&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</pre>
+        <p>上述代码的元素构成如下：</p>
+        <table border="1" cellspacing="0">
+            <tr><th>开始标签</th><th>元素内容</th><th>结束标签</th><tr>
+            <tr>
+                <td><code>&lt;html&gt;</code></td>
+                <td><code>&lt;head&gt;...&lt;/head&gt;&lt;body&gt;...&lt;/body&gt;</code></td>
+                <td><code>&lt;/html&gt;</code></td>
+            </tr>
+            <tr>
+                <td><code>&lt;head&gt;</code></td>
+                <td><code>&lt;meta charset=&quot;utf-8&quot;&gt;</code></td>
+                <td><code>&lt;/head&gt;</code></td>
+            </tr>
+            <tr>
+                <td><code>&lt;body&gt;</code></td>
+                <td><code>&lt;h2&gt;单摆实验&lt;/h2&gt;</code></td>
+                <td><code>&lt;/body&gt;</code></td>
+            </tr>
+            <tr>
+                <td><code>&lt;metaset&gt;</code></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><code>&lt;title&gt;</code></td>
+                <td><code>Pendulum</code></td>
+                <td><code>&lt;/title&gt;</code></td>
+            </tr>
+            <tr>
+                <td><code>&lt;h2&gt;</code></td>
+                <td><code>单摆实验</code></td>
+                <td><code>&lt;/h2&gt;</code></td>
+            </tr>
+        </table>
+        <p>代码最开始的<code>&lt;!DOCTYPE&gt;</code>声明不是HTML标签，它是用来告知浏览器使用了哪种HTML版本。HTML5规定声明为<code>&lt;!DOCTYPE html&gt;</code>。</p>
+        <a href="code/2-2/pendulum.html" target="_blank">运行结果</a>
+        <h3>2.3 标签</h3>
+        <p>HTML常用标签：</p>
+        <table border="1" cellspacing="0">
+            <tr><th>标签</th><th>描述</th><tr>
+            <tr>
+                <td><code>&lt;html&gt;</code></td>
+                <td>定义一个HTML文档。</td>
+            </tr>
+            <tr>
+                <td><code>&lt;head&gt;</code></td>
+                <td>定义关于文档的信息。</td>
+            </tr>
+            <tr>
+                <td><code>&lt;meta&gt;</code></td>
+                <td>空元素。定义关于文档的元信息。中文文档需包含<code>&lt;meta charset=&quot;utf-8&quot;&gt;</code>。</td>
+            </tr>
+            <tr>
+                <td><code>&lt;title&gt;</code></td>
+                <td>定义文档的标题，必须且只能在head中出现。显示在浏览器工具栏。</td>
+            </tr>
+            <tr>
+                <td><code>&lt;body&gt;</code></td>
+                <td>定义文档的主体。</td>
+            </tr>
+            <tr>
+                <td><code>&lt;h1&gt;-&lt;h6&gt;</code></td>
+                <td>定义一个指定重要等级的标题。</td>
+            </tr>
+            <tr>
+                <td><code>&lt;p&gt;</code></td>
+                <td>定义一个段落。</td>
+            </tr>
+            <tr>
+                <td><code>&lt;br&gt;</code></td>
+                <td>空元素。定义换行。</td>
+            </tr>
+            <tr>
+                <td><code>&lt;hr&gt;</code></td>
+                <td>空元素。定义水平线。</td>
+            </tr>
+        </table>
+        <p>更多标签可以查看<a href="https://www.runoob.com/tags/html-reference.html" target="_blank">HTML参考手册</a>。</p>
+        <p>在示例代码中插入一个段落、换行符及水平线，添加一些信息：</p>
+        <pre>
+&lt;h2&gt;单摆实验&lt;/h2&gt;
+&lt;p&gt;仅作演示&lt;br/&gt;不考虑摆锤半径和摆角过大等的影响&lt;/p&gt;
+&lt;hr/&gt;</pre>
+        <a href="code/2-3/pendulum.html" target="_blank">运行结果</a>
+        <h3 id="attrRef">2.4 属性</h3>
+        <p>属性为HTML元素提供附加信息。其语法为<code>&lt;开始标签 属性=“值”&gt;元素内容&lt;/结束标签&gt;</code>或空元素<code>&lt;开始标签 属性=“值”/&gt;</code>。</p>
+        <p>HTML常用属性：</p>
+        <table border="1" cellspacing="0">
+            <tr><th>属性</th><th>描述</th><tr>
+            <tr>
+                <td><code>class</code></td>
+                <td>规定元素的类。一个元素可以有多个类，用空格分隔；不同元素可以属于同一个类。</td>
+            </tr>
+            <tr>
+                <td><code>id</code></td>
+                <td>规定元素的ID。一个元素只能有唯一的ID；ID不能重复出现。</td>
+            </tr>
+            <tr>
+                <td><code>style</code></td>
+                <td>规定元素的行内样式。详见3.5节<a href="#styleRef">使用样式</a>。</td>
+            </tr>
+            <tr>
+                <td><code>title</code></td>
+                <td>规定元素的额外信息。这些信息通常会在鼠标移到元素上时显示。</td>
+            </tr>
+        </table>
+        <p>以上是一些全局属性，对所有标签都适用。其中元素的类和ID用于定位元素，在CSS和JavaScript代码中有重要作用。不同标签有各自特有的属性，可以查看<a href="https://www.runoob.com/tags/html-reference.html" target="_blank">HTML参考手册</a>。</p>
+        <h3>2.5 链接</h3>
+        <p>HTML使用超链接与网络上的另一个文档相连。其语法为<code>&lt;a href=&quot;链接地址&quot;&gt;链接文本&lt;/a&gt;</code>。其中链接地址可以是网址、文件位置、元素ID等。如给某个段落指定ID<code>&lt;p id=&quot;test&quot;&gt;test&lt;/p&gt;</code>，则可在文档的另一处通过超链接<code>&lt;a href=&quot;#test&quot;&gt;点击跳转到test&lt;/a&gt;</code>跳转到该段落。属性<code>target=&quot;_blank&quot;</code>可使对象在新页面打开。</p>
+        <p>在示例代码中插入phylab链接：
+            <pre>&lt;a href=&quot;http://phylab.fudan.edu.cn&quot; target=&quot;_blank&quot;&gt;访问实验中心主页&lt;/a&gt;</pre>
+        <a href="code/2-5/pendulum.html" target="_blank">运行结果</a>
+        <h3>2.6 列表</h3>
+        <p><code>&lt;ul&gt;&lt;/ul&gt;</code>定义无序列表；<code>&lt;ol&gt;&lt;/ol&gt;</code>定义有序列表。<code>&lt;li&gt;&lt;/li&gt;</code>用于插入列表中的项。
+        <p>在示例代码中通过列表说明该课件的操作方法：</p>
+        <pre>
+&lt;ul&gt;
+    &lt;li&gt;点击开始或停止按钮，控制动画&lt;/li&gt;
+    &lt;li&gt;移动滑块，改变摆锤大小&lt;/li&gt;
+    &lt;li&gt;停止时鼠标拖动摆锤，调节摆幅和摆长&lt;/li&gt;
+    &lt;li&gt;画面高度为5m&lt;/li&gt;
+&lt;/ul&gt;</pre>
+        <a href="code/2-6/pendulum.html" target="_blank">运行结果</a>
+        <h3>2.7 文本格式化</h3>
+        <p>使用格式化标签可以对输出的文本添加格式。</p>
+        <p>HTML常用格式化标签：</p>
+        <table border="1" cellspacing="0">
+            <tr><th>标签</th><th>描述</th></tr>
+            <tr>
+                <td><code>&lt;b&gt;</code></td>
+                <td>定义<b>粗体</b>字。</td>
+            </tr>
+            <tr>
+                <td><code>&lt;i&gt;</code></td>
+                <td>定义<i>斜体</i>字。</td>
+            </tr>
+            <tr>
+                <td><code>&lt;small&gt;</code></td>
+                <td>定义<small>小号</small>字。</td>
+            </tr>
+            <tr>
+                <td><code>&lt;sub&gt;</code></td>
+                <td>定义<sub>下标</sub>字。</td>
+            </tr>
+            <tr>
+                <td><code>&lt;sup&gt;</code></td>
+                <td>定义<sup>上标</sup>字。</td>
+            </tr>
+            <tr>
+                <td><code>&lt;ins&gt;</code></td>
+                <td>定义<ins>插入</ins>字。</td>
+            </tr>
+            <tr>
+                <td><code>&lt;del&gt;</code></td>
+                <td>定义<del>删除</del>字。</td>
+            </tr>
+            <tr>
+                <td><code>&lt;code&gt;</code></td>
+                <td>定义<code>计算机代码</code>。</td>
+            </tr>
+        </table>
+        <p>对示例代码中的操作指南添加格式以突出重点：</p>
+        <pre>
+点击&lt;b&gt;开始&lt;/b&gt;或&lt;b&gt;停止&lt;/b&gt;按钮，控制动画
+&lt;i&gt;停止时 &lt;/i&gt;鼠标拖动摆锤，调节摆幅和摆长</pre>
+        <a href="code/2-7/pendulum.html" target="_blank">运行结果</a>
+        <hr/>
+
+        <h2 id="ch3">3 CSS</h2>
+        <h3>3.1 简介</h3>
+        <p>层叠样式表（Cascading Style Sheets）是一种用来表现HTML等文件样式的语言，可以静态或动态地修饰网页。CSS3是最新的CSS标准，包含了很多新特性以实现更多效果，本教程不涉及。
+        <h3>3.2 语法</h3>
+        <p>CSS规则由选择器及一条或多条声明构成。其语法为<code>选择器 {属性:值;属性:值;}</code>。</p>
+        <h3>3.3 选择器</h3>
+        <p>CSS选择器用于选择需要改变样式的元素。</p>
+        <p>CSS常用选择器：</p>
+        <table border="1" cellspacing="0">
+            <tr><th>选择器</th><th>示例</th><th>示例说明</th></tr>
+            <tr>
+                <td>.class</td>
+                <td><code>.intro</code></td>
+                <td>选择所有<code>class=&quot;intro&quot;</code>的元素。</td>
+            </tr>
+            <tr>
+                <td>#id</td>
+                <td><code>#firstname</code></td>
+                <td>选择所有<code>id=&quot;firstname&quot;</code>的元素。</td>
+            </tr>
+            <tr>
+                <td>*</td>
+                <td><code>*</code></td>
+                <td>选择所有元素。</td>
+            </tr>
+            <tr>
+                <td>element</td>
+                <td><code>p</code></td>
+                <td>选择所有<code>&lt;p&gt;</code>元素。</td>
+            </tr>
+            <tr>
+                <td>element1,element2</td>
+                <td><code>h1,h2</code></td>
+                <td>选择所有<code>&lt;h1&gt;</code>元素和<code>&lt;h2&gt;</code>元素。</td>
+            </tr>
+        </table>
+        <p>其中class和id由元素的属性指定，详见2.4节<a href="#attrRef">属性</a>。更多选择器可以查看<a href="https://www.runoob.com/cssref/css-selectors.html" target="_blank">CSS选择器</a>。</p>
+        <h3>3.4 属性</h3>
+        <p>多个属性和值组合，构成特定的样式。</p>
+        <p>CSS常用属性：</p>
+        <table border="1" cellspacing="0">
+            <tr><th>属性</th><th>描述</th></tr>
+            <tr><td><code>background</code></td><td>设置元素的背景属性。</td></tr>
+            <tr><td><code>padding</code></td><td>设置元素的内边距属性。</td></tr>
+            <tr><td><code>margin</code></td><td>设置元素的外边距属性。</td></tr>
+            <tr><td><code>width</code></td><td>设置元素的宽度。</td></tr>
+            <tr><td><code>height</code></td><td>设置元素的高度。</td></tr>
+            <tr><td><code>font</code></td><td>设置元素的字体属性。</td></tr>
+        </table>
+        <p>更多属性可以查看<a href="https://www.runoob.com/cssref/css-reference.html" target="_blank">CSS参考手册</a>。</p>
+        <h3 id="styleRef">3.5 使用样式</h3>
+        <p>插入样式表的方法有三种：外部样式、内部样式、内联样式。以下述样式为例：</p>
+        <pre>p {color:red;}</pre>
+        <p>外部样式保存在独立的文件中，以.css为后缀名。如将样式保存在<code>myStyle.css</code>文件中，可在HTML的<code>&lt;head&gt;</code>内添加<code>&lt;link&gt;</code>元素来引用该样式表：</p>
+        <pre>
+&lt;head&gt;
+    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;myStyle.css&quot;&gt;
+&lt;head&gt;</pre>
+        <p>内部样式通过在<code>&lt;head&gt;</code>内使用<code>&lt;style&gt;</code>标签定义样式：</p>
+        <pre>
+&lt;head&gt;
+    &lt;style&gt;
+        p {color:red;}
+    &lt;/style&gt;
+&lt;/head&gt;</pre>
+        <p>内联样式由元素的<code>style</code>属性定义：</p>
+        <pre>&lt;p style=&quot;color:red;&quot;&gt;这是一个段落&lt;/p&gt;</pre>
+        <p>三种方式的优先级为内联样式>内部样式>外部样式。但当外部样式放在内部样式后面时，外部样式>内部样式。CSS中颜色的表示方式可以查看<a href="https://www.runoob.com/cssref/css-colors.html" target="_blank">CSS颜色</a>。</p>
+        <p>为示例代码中的<code>&lt;body&gt;</code>添加内部样式：</p>
+        <pre>
+&lt;style&gt;
+    body
+    {
+        background: #eeeeee;
+        margin: 20px;
+    }
+&lt;/style&gt;</pre>
+        <p>为附加信息添加内联样式：</p>
+        <pre>&lt;p style=&quot;color:gray;&quot;&gt;仅作演示&lt;br/&gt;不考虑摆锤半径和摆角过大等的影响&lt;/p&gt;</pre>
+        <a href="code/3-5/pendulum.html" target="_blank">运行结果</a>
+        <hr/>
+
+        <h2 id="ch4">4 JavaScript</h2>
+        <h3>4.1 简介</h3>
+        <p>JavaScript是一种轻量级的编程语言，插入HTML页面后由浏览器执行。本章只介绍理论，实践部分参见第五章<a href="#ch5">Canvas元素</a>。</p>
+        <h3>4.2 变量</h3>
+        <p>JavaScript是动态脚本语言，在运行时确定数据类型，故在变量使用之前不需要声明其类型。使用关键字<code>var</code>声明变量，使用等号为变量赋值：</p>
+        <pre>
+var x, y;
+x = 5;
+y = &quot;hello world&quot;;
+var z = 3.14;</pre>
+        <h3>4.3 数据类型</h3>
+        <p>JavaScript中的值类型包括数字、字符串、布尔、<code>null</code>、<code>undefined</code>等；引用类型包括对象和数组。</p>
+        <p>对象是拥有属性和方法的数据，通过花括号定义对象：</p>
+        <pre>var fruit = { kind: "apple"; color: "red"; quantity: 12; };</pre>
+        <p>使用点操作符引用对象中的值，如<code>fruit.kind</code>。（此处对JavaScript中对象的描述不完整，如需完整内容请查找更多资料了解）</p>
+        <p>数组通过方括号定义：</p>
+        <pre>var number = [1, 2, 3, 4];</pre>
+        <p>使用下标引用对象中的值，如<code>number[0]</code>。</p>
+        <h3>4.4 运算符</h3>
+        <p>数学运算符：<code>+, -, *, /</code></p>
+        <p>比较运算符：<code>==, !=, &lt;, &gt;, &lt;=, &gt;=</code></p>
+        <h3>4.5 控制结构</h3>
+        <p>条件语句：<code>if (条件) { //要执行的代码 }</code></p>
+        <p>for循环：<code>for (初始条件; 循环条件; 更新) { //要执行的代码 }</code></p>
+        <p>while循环：<code>while (循环条件) { //要执行的代码 }</code></p>
+        <h3>4.6 函数</h3>
+        <p>定义函数：<code>function 函数名(参数1, 参数2, …) { //函数体 }</code></p>
+        <p>定义匿名函数并赋值给变量：<code>变量名 = function(参数1, 参数2, …) { //函数体 }</code></p>
+        <h3>4.7 HTML DOM</h3>
+        <p>文档对象类型（Document Object Model）描述了HTML元素的层次结构。元素之间的关系有父元素、子元素、同胞元素、祖先元素、后代元素等。通过HTML DOM，JavaScript可以修改页面中的HTML元素及CSS样式，以及对页面中的事件做出响应。</p>
+        <p>通过ID查找元素：<code>x = document.getElementById(&quot;元素的ID&quot;);</code></p>
+        <p>通过类查找元素：<code>x = document.getElementsByClassName(&quot;元素的类&quot;);</code></p>
+        <h3>4.8 使用脚本</h3>
+        <p>插入脚本的方法有两种：外部引用、内部引用。
+        <p>外部引用的脚本保存在独立的文件中，以.js为后缀名。如将脚本保存在<code>myScript.js</code>文件中，可在HTML的<code>&lt;head&gt;</code>或<code>&lt;body&gt;</code>内引用：</p>
+        <pre>&lt;script src=&quot;myScript.js&quot;&gt;&lt;/script.js&gt;</pre>
+        <p>内部引用通过在<code>&lt;head&gt;</code>或<code>&lt;body&gt;</code>内使用<code>&lt;script&gt;</code>标签插入脚本：</p>
+        <pre>
+&lt;script&gt;
+    //代码块
+&lt;/script&gt;</pre>
+        <p>脚本插入HTML的位置影响加载页面时代码的读取顺序，一般将脚本放在<code>&lt;body&gt;</code>的最底部。若脚本内只包含函数定义，可以放在任意位置。</p>
+
+        <hr/>
+
+        <h2 id="ch5">5 Canvas元素</h2>
+        <h3>5.1 简介</h3>
+        <p>HTML5的<code>&lt;canvas&gt;</code>标签用于绘制图像。<code>&lt;canvas&gt;</code>本身没有绘制能力，仅仅是图形的容器，通常通过JavaScript来完成实际的绘图任务。</p>
+        <h3>5.2 基础</h3>
+        <p>在示例代码中添加宽600像素、高300像素的<code>&lt;canvas&gt;</code>元素，指定其ID为<code>myCanvas</code>：</p>
+        <pre>&lt;canvas id=&quot;myCanvas&quot; width=&quot;600&quot; height=&quot;300&quot;&gt;&lt;/canvas&gt;</pre>
+        <p>从现在开始对元素样式的改变不再进行明确说明，请自行查看源代码。</p>
+        <p>创建JavaScript文件<code>pendulum.js</code>并插入HTML中：</p>
+        <pre>&lt;script src=&quot;pendulum.js&quot;&gt;&lt;/script&gt;</pre>
+        <p>编辑<code>pendulum.js</code>，通过ID获取HTML中的<code>&lt;canvas&gt;</code>元素。<code>getContext()</code>方法可返回一个对象，该对象提供了用于在画布上绘图的方法和属性。此处使用<code>getContext(&quot;2d&quot;)</code>获取2D绘图对象：</p>
+        <pre>
+var canvas = document.getElementById("myCanvas"),
+    context = canvas.getContext("2d");</pre>
+        <p>可在脚本中任意位置插入<code>alert(s)</code>函数，通过提示框输出任意变量<code>s</code>的值，用于Debug。</p>
+        <a href="code/5-2/pendulum.html" target="_blank">运行结果</a>
+        <h3>5.3 样式</h3>
+        <p>影响绘图样式的常用属性：</p>
+        <table border="1" cellspacing="0">
+            <tr><th>属性</th><th>描述</th></tr>
+            <tr>
+                <td><code>fillStyle</code></td>
+                <td>设置或返回用于填充的样式。可使用颜色、渐变或图片进行填充。</td>
+            </tr>
+            <tr>
+                <td><code>strokeStyle</code></td>
+                <td>设置或返回用于描边的样式。可使用颜色、渐变或图片进行描边。</td>
+            </tr>
+            <tr>
+                <td><code>shadowColor</code></td>
+                <td>设置或返回用于阴影的颜色。</td>
+            </tr>
+            <tr>
+                <td><code>shadowBlur</code></td>
+                <td>设置或返回用于阴影的模糊级别。影响描述阴影的高斯函数的标准差。</td>
+            </tr>
+            <tr>
+                <td><code>shadowOffsetX</code></td>
+                <td>设置或返回阴影与形状的水平距离。</td>
+            </tr>
+            <tr>
+                <td><code>shadowOffsetY</code></td>
+                <td>设置或返回阴影与形状的垂直距离。</td>
+            </tr>
+            <tr>
+                <td><code>lineWidth</code></td>
+                <td>设置或返回当前的线条宽度。</td>
+            </tr>
+        </table>
+        <p>本教程只使用颜色进行填充和描边。颜色表示方式同<a href="https://www.runoob.com/cssref/css-colors.html" target="_blank">CSS颜色</a>。</p>
+        <p>影响绘图样式的常用方法：</p>
+        <table border="1" cellspacing="0">
+            <tr><th>方法</th><th>描述</th></tr>
+            <tr>
+                <td><code>save()</code></td>
+                <td>保存当前的绘图样式设置。</td>
+            </tr>
+            <tr>
+                <td><code>restore()</code></td>
+                <td>恢复到上一次保存的绘图样式设置。</td>
+            </tr>
+        </table>
+        <p><code>save()</code>和<code>restore()</code>通常成对使用，用于重置临时的样式设置。</p>
+        
+        <h3>5.4 路径</h3>
+        <p>Canvas中绘图的步骤为先创建一条路径，再对路径进行填充或描边。注意左上角坐标为(0,0)，右下角坐标为(canvas.width,canvas.height)。</p>
+        <p>绘制路径的常用方法：</p>
+        <table border="1" cellspacing="0">
+            <tr><th>方法</th><th>描述</th></tr>
+            <tr>
+                <td><code>beginPath()</code></td>
+                <td>创建一条新路径。</td>
+            </tr>
+            <tr>
+                <td><code>moveTo(x,y)</code></td>
+                <td>把画笔移动到中坐标为(<code>x,y</code>)的指定点。</td>
+            </tr>
+            <tr>
+                <td><code>lineTo(x,y)</code></td>
+                <td>添加一个新点(<code>x,y</code>)，并创建从最后指定点到该点的路径。</td>
+            </tr>
+            <tr>
+                <td><code>arc(x,y,r,start,end,dir)</code></td>
+                <td>创建圆/圆弧路径。圆心为(<code>x,y</code>)，半径为<code>r</code>，起始角为<code>start</code>，终止角为<code>end</code>。<code>dir</code>为可选参数，规定绘图方向，<code>dir=true</code>为逆时针，<code>dir=false</code>为顺时针（默认值）。若有最后指定点，则同时创建从最后指定点到圆弧起点的路径。</td>
+            </tr>
+            <tr>
+                <td><code>rect(x,y,w,h)</code></td>
+                <td>创建矩形路径。左上角坐标为(<code>x,y</code>)，宽度为<code>w</code>，高度为<code>h</code>。</td>
+            </tr>
+            <tr>
+                <td><code>closePath()</code></td>
+                <td>创建从最后指定点到起始点的路径。</td>
+            </tr>
+            <tr>
+                <td><code>fill()</code></td>
+                <td>填充当前路径。</td>
+            </tr>
+            <tr>
+                <td><code>stroke()</code></td>
+                <td>描边当前路径。</td>
+            </tr>
+        </table>
+        <p>在示例代码的脚本中创建<code>circle</code>对象用于记录摆锤的信息：</p>
+        <pre>
+var circle = {
+        x: 150,
+        y: 150,
+        radius: 20
+    };</pre>
+        <p>定义<code>drawCircle()</code>函数绘制摆锤及摆绳：</p>
+        <pre>
+// Functions
+
+function drawCircle() {
+    context.save();
+
+    context.beginPath();
+    context.moveTo(circle.x, circle.y);
+    context.lineTo(canvas.width/2, 0);
+
+    context.lineWidth = 1;
+    context.strokeStyle = &quot;black&quot;;
+    context.stroke();
+
+    context.beginPath();
+    context.arc(circle.x, circle.y, circle.radius, 0, 2*Math.PI);
+    context.fillStyle = &quot;cornflowerblue&quot;;
+    context.fill();
+    context.lineWidth = 0.5;
+    context.stroke();
+
+    context.restore();
+}
+
+// Initialization
+
+drawCircle();</pre>
+        <a href="code/5-4/pendulum.html" target="_blank">运行结果</a>
+        <h3>5.5 矩形</h3>
+        <p>除了通过路径，也可以直接绘制矩形。相关方法：</p>
+        <table border="1" cellspacing="0">
+            <tr><th>方法</th><th>描述</th></tr>
+            <tr>
+                <td><code>fillRect(x,y,w,h)</code></td>
+                <td>绘制被填充的矩形。左上角坐标为(<code>x,y</code>)，宽度为<code>w</code>，高度为<code>h</code>。</td>
+            </tr>
+            <tr>
+                <td><code>strokeRect(x,y,w,h)</code></td>
+                <td>绘制被描边的矩形。左上角坐标为(<code>x,y</code>)，宽度为<code>w</code>，高度为<code>h</code>。</td>
+            </tr>
+            <tr>
+                <td><code>clearRect(x,y,w,h)</code></td>
+                <td>清除矩形区域的像素。左上角坐标为(<code>x,y</code>)，宽度为<code>w</code>，高度为<code>h</code>。</td>
+            </tr>
+        </table>
+        <h3>5.6 文本</h3>
+        <p>绘制文本的常用属性：</p>
+        <table border="1" cellspacing="0">
+            <tr><th>属性</th><th>描述</th></tr>
+            <tr>
+                <td><code>font</code></td>
+                <td>设置或返回文本内容的当前字体属性。语法与<a href="https://www.runoob.com/cssref/pr-font-font.html" target="_blank">CSS font属性</a>相同。</td>
+            </tr>
+            <tr>
+                <td><code>textAlign</code></td>
+                <td>设置或返回文本内容的当前对齐方式。可选值有<code>&quot;center&quot;,&quot;end&quot;,&quot;left&quot;,&quot;right&quot;,&quot;start&quot;</code>。</td>
+            </tr>
+            <tr>
+                <td><code>clearRect(x,y,w,h)</code></td>
+                <td>清除矩形区域的像素。左上角坐标为(<code>x,y</code>)，宽度为<code>w</code>，高度为<code>h</code>。</td>
+            </tr>
+        </table>
+        <p>在示例代码的脚本中创建<code>info</code>对象用于记录摆长和摆幅信息。为减少后续计算量，同时记录不同单位的摆长和摆幅。设定画布对应的真实高度为5m，则长度转换关系为<code>PIXEL_PER_METER = canvas.height/5</code>。通过函数<code>updateInfo()</code>计算：</p>
+        <pre>
+var info = {
+        angleInRad: 0,
+        angleInDegree: 0,
+        lengthInPixel: 0,
+        lengthInMeter: 0
+    },
+
+    PIXEL_PER_METER = canvas.height/5;
+
+// Functions
+
+function updateInfo() {
+    dx = circle.x - canvas.width/2;
+    dy = circle.y;
+    info.angleInRad = Math.atan(dx/dy);
+    info.angleInDegree = info.angleInRad / Math.PI * 180;
+    info.lengthInPixel = Math.sqrt(dx*dx + dy*dy);
+    info.lengthInMeter = info.lengthInPixel / PIXEL_PER_METER;
+}</pre>
+        <p>在画布右上角绘制一半透明矩形用于显示信息，添加阴影形成浮于画布之上的效果，并绘制摆长和摆幅信息。<code>toFixed()</code>指定数据精度：</p>
+        <pre>
+function drawInfo() {
+    context.save();
+
+    context.beginPath();
+    context.rect(420, 20, 150, 80);
+
+    context.shadowColor = "rgba(0,0,0,0.3)";
+    context.shadowOffsetX = 4;
+    context.shadowOffsetY = -4;
+    context.shadowBlur = 8;
+    context.fillStyle = "rgba(0,150,255,0.3)";
+    context.fill();
+
+    context.restore();
+
+    context.fillText("摆长："+info.lengthInMeter.toFixed(2)+" m", 440, 50);
+    context.fillText("摆幅："+Math.abs(info.angleInDegree).toFixed(2)+"°", 440, 80);
+}
+
+function draw() {
+    drawCircle();
+    drawInfo();
+}
+
+// Initialization
+
+context.font = "18px Arial";
+context.fillStyle = "black";
+updateInfo();
+draw();</pre>
+        <a href="code/5-6/pendulum.html" target="_blank">运行结果</a>
+        <h3>5.7 动画</h3>
+        <p><code>requestAnimationFrame(callback)</code>可在下一帧调用<code>callback</code>函数，并将调用的时刻作为参数传递给该函数。为了兼容不同浏览器，将使用<code>utils.js</code>中的<code>requestAnimFrame(callback)</code>函数。</p>
+        <p>示例代码中，单摆的运动方程为θ=θ<sub>0</sub>cos((g/l)<sup>1/2</sup>t)，其中θ<sub>0</sub>为摆幅。将<code>utils.js</code>（可以在示例代码文件夹中找到）复制到当前文件夹，并插入HTML中。在<code>info</code>对象中添加<code>startTime</code>属性，记录起始时间。定义重力加速度<code>G_ACC=9.8</code>。定义每一帧的绘图函数<code>draw(currentTime)</code>，并使用<code>requestAnimFrame()</code>创建动画；在每一帧更新摆锤位置并重新绘图：</p>
+        <pre>
+var info = {
+        angleInRad: 0,
+        angleInDegree: 0,
+        lengthInPixel: 0,
+        lengthInMeter: 0,
+        startTime: 0,
+    },
+
+    G_ACC = 9.8;
+
+// Functions
+
+function draw(currentTime) {
+    requestAnimFrame(draw);
+
+    var angle;
+
+    if (info.startTime == 0 &amp;&amp; currentTime &gt; info.startTime) {
+        info.startTime = currentTime;
+    }
+
+    angle = info.angleInRad * Math.cos(Math.sqrt(G_ACC/info.lengthInMeter)*((currentTime-info.startTime)/1000)); 
+    circle.x = canvas.width/2 + info.lengthInPixel * Math.sin(angle);
+    circle.y = info.lengthInPixel * Math.cos(angle);
+
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    drawCircle();
+    drawInfo();
+}</pre>
+        <a href="code/5-7/pendulum.html" target="_blank">运行结果</a>
+        <h3>5.8 修改HTML元素</h3>
+        <p>JavaScript可以通过<code>innerHTML</code>修改任意HTML元素内容。</p>
+        <p>在示例代码的HTML中插入<code>&lt;span&gt;</code>元素用于显示摆动周期。<code>&lt;span&gt;</code>无实际意义，只有当对它应用样式时才会产生视觉上的变化，此处用于定位摆动周期文本的位置。</p>
+        <pre>摆动周期：&lt;span id=&quot;period&quot;&gt;--&lt;/span&gt;</pre>
+        <p>在<code>updatePeriod()</code>中计算摆动周期并修改<code>&lt;span&gt;</code>中的文本：</p>
+        <pre>
+var period = document.getElementById(&quot;period&quot;);
+
+// Functions
+ 
+function updatePeriod() {
+    var p = 2*Math.PI*Math.sqrt(info.lengthInMeter/G_ACC);
+    period.innerHTML = p.toFixed(2)+&quot;s&quot;;
+}
+
+// Initialization
+
+updatePeriod();</pre>
+        <a href="code/5-8/pendulum.html" target="_blank">运行结果</a>
+        <h3>5.9 修改CSS样式</h3>
+        <p>JavaScript通过元素的<code>style</code>属性修改元素的CSS样式。</p>
+        <p>例子见下节。</p>
+        <h3>5.10 鼠标事件</h3>
+        <p>HTML元素可通过鼠标触发事件，定义函数并赋给相应属性以对事件进行响应。</p>
+        <p>HTML常用鼠标事件：</p>
+        <table border="1" cellspacing="0">
+            <tr><th>属性</th><th>描述</th></tr>
+            <tr>
+                <td><code>onclick</code></td>
+                <td>当单击鼠标时运行脚本。</td>
+            </tr>
+            <tr>
+                <td><code>onmousedown</code></td>
+                <td>当按下鼠标按钮时运行脚本。</td>
+            </tr>
+            <tr>
+                <td><code>onmousemove</code></td>
+                <td>当鼠标指针移动时运行脚本。</td>
+            </tr>
+            <tr>
+                <td><code>onmouseup</code></td>
+                <td>当松开鼠标按钮时运行脚本。</td>
+            </tr>
+        </table>
+        <h4>5.10.1 onclick</h4>
+        <p>在示例代码的HTML中插入控制动画的按钮：</p>
+        <pre>&lt;input id=&quot;animateButton&quot; class=&quot;controls&quot; type=&quot;button&quot; value=&quot;开始&quot;/&gt;</pre>
+        <p>初始状态动画停止，按钮显示“开始”。点击按钮时，重置<code>info.startTime</code>并播放动画，按钮显示“停止”（另一种通过脚本修改HTML元素的方法）；再次点击按钮，动画停止，更新当前摆幅，按钮显示“开始”。通过变量<code>pause</code>记录当前动画状态以控制绘图函数：</p>
+        <pre>
+var animateButton = document.getElementById(&quot;animateButton&quot;),
+    paused = true;
+
+// Functions
+
+function draw(currentTime) {
+    requestAnimFrame(draw);
+
+    if (!paused) {
+        var angle;
+
+        if (info.startTime == 0) {
+            info.startTime = currentTime;
+        }
+
+        angle = info.angleInRad * Math.cos(Math.sqrt(G_ACC/info.lengthInMeter)*((currentTime-info.startTime)/1000)); 
+        circle.x = canvas.width/2 + info.lengthInPixel * Math.sin(angle);
+        circle.y = info.lengthInPixel * Math.cos(angle);
+    }
+    
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    drawCircle();
+    drawInfo();
+}
+
+// Events
+
+animateButton.onclick = function(e) {
+    if (paused) {
+        paused = false;
+        animateButton.value = &quot;停止&quot;;
+        info.startTime = 0;
+    }
+    else {
+        paused = true;
+        animateButton.value = &quot;开始&quot;;
+        updateInfo();
+    }
+}</pre>
+        <a href="code/5-10-1/pendulum.html" target="_blank">运行结果</a>
+        <h4>5.10.2 onmousemove</h4>
+        <p>动画停止时，鼠标移到摆锤内时鼠标变为手指型，以提示用户此时摆锤可以拖动。触发<code>onmousemove</code>事件时，事件<code>e</code>作为参数传给响应函数，而<code>e.clientX</code>和<code>e.clientY</code>为此时鼠标在整个页面中的位置；定义<code>windowToCanvas(x,y)</code>函数将该坐标转换为画布内的坐标。<code>isPointInPath(x,y)</code>可以判断该坐标是否落在当前路径中。通过<code>canvas.style.pointer</code>改变CSS样式中的指针属性：</p>
+        <pre>
+// Functions
+
+function windowToCanvas(x, y) {
+    var bbox = canvas.getBoundingClientRect();
+    return { x: x - bbox.left * (canvas.width/bbox.width),
+             y: y - bbox.top * (canvas.height/bbox.height) };
+}
+
+function isPointInCircle(loc) {
+    context.beginPath();
+    context.arc(circle.x, circle.y, circle.radius, 0, 2*Math.PI);
+    return context.isPointInPath(loc.x, loc.y);
+}
+
+// Events
+
+canvas.onmousemove = function(e) {
+    var loc = windowToCanvas(e.clientX, e.clientY);
+    if (isPointInCircle(loc) &amp;&amp; paused) {
+        canvas.style.cursor = &quot;pointer&quot;;
+    }
+    else {
+        canvas.style.cursor = &quot;auto&quot;;
+    }
+}</pre>
+        <a href="code/5-10-2/pendulum.html" target="_blank">运行结果</a>
+        <h4>5.10.3 onmousedown/onmouseup</h4>
+        <p>通过<code>onmousedown</code>和<code>onmouseup</code>可以实现拖动摆锤的效果。请直接看示例代码。</p>
+        <a href="code/5-10-3/pendulum.html" target="_blank">运行结果</a>
+        <h3>5.11 表单事件</h3>
+        <p>HTML表单用于收集不同类型的用户输入，如文本域、单选框、复选框、滑动条等。表单事件在HTML表单中触发。</p>
+        <p>HTML常用表单事件：</p>
+        <table border="1" cellspacing="0">
+            <tr><th>属性</th><th>描述</th></tr>
+            <tr>
+                <td><code>onchange</code></td>
+                <td>当元素改变时运行脚本。</td>
+            </tr>
+        </table>
+        <p>在示例代码的HTML中添加滑动条来控制摆锤大小，<code>min</code>和<code>max</code>分别用于设定最小值和最大值，<code>value</code>为默认值：</p>
+        <pre>摆锤大小：&lt;input id=&quot;radiusRange&quot; class=&quot;controls&quot; type=&quot;range&quot; min=&quot;15&quot; max=&quot;30&quot; value=&quot;20&quot;/&gt;</pre>
+        <p>滑动滑块时，更新摆锤大小：</p>
+        <pre>
+var radiusRange = document.getElementById(&quot;radiusRange&quot;);
+
+\\ Events
+
+radiusRange.onchange = function(e) {
+    circle.radius = radiusRange.value;
+}</pre>
+        <a href="code/5-11/pendulum.html" target="_blank">运行结果</a>
+        
+        <hr/>
+
+        <h2 id="ch6">6 参考资料</h2>
+        <ul>
+            <li><a href="https://www.runoob.com/html/html-tutorial.html" target="_blank">HTML 教程 | 菜鸟教程</a></li>
+            <li><a href="https://www.runoob.com/css/css-tutorial.html" target="_blank">CSS 教程 | 菜鸟教程</a></li>
+            <li><a href="https://www.runoob.com/js/js-tutorial.html" target="_blank">JavaScript 教程 | 菜鸟教程</a></li>
+            <li><a href="https://blog.csdn.net/u012468376/article/details/73350998" target="_blank">学习HTML5 Canvas这一篇文章就够了</a></li>
+            <li>Jeremy Keith, Jeffrey Sambells, 《DOM Scripting》（《JavaScript DOM编程艺术》）</li>
+            <li>David Geary, 《Core HTML5 Canvas》（《HTML5 Canvas核心技术》）</li>
+        </ul>
+        <p>对3D绘图感兴趣的可以学习Three.js或WebGL。也推荐学习HTML5和CSS3的新特性，或许会有更多灵感~</p>
+
+    </body>
+</html>

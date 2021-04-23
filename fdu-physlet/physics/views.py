@@ -24,7 +24,6 @@ def index(request):
     return render(request, 'index/index.html', {'projects': projects})
 
 
-@login_required
 def download(request, id):
     project = get_object_or_404(Project, id=id)
     file_name = project.title + ".zip"

@@ -19,12 +19,13 @@ g_manage_projects = False
 
 
 def superuser_required(view_func):
+    '''decorator used to authenticate the superuser'''
     @wraps(view_func)
     def _wrapper(request, *args, **kwargs):
         if (request.user.is_superuser):
             return view_func(request, *args, **kwargs)
         else:
-            raise Http404("no superuser permission")
+            return redirect("admin_page:log_in")
     return _wrapper
 
 
@@ -41,7 +42,7 @@ def manage_upload_projects(request):
         projects = Project.objects.filter(is_reviewed=False)
         context = {"Projects": projects, "upload_projects": g_upload_projects, "manage_projects": g_manage_projects}
         return render(request, 'admin.html', context)
-    return Http404()
+    raise Http404()
     
     
 @superuser_required
@@ -57,7 +58,7 @@ def manage_projects(request):
         projects = Project.objects.filter(is_reviewed = True)
         context = {"Projects": projects, "upload_projects": g_upload_projects, "manage_projects": g_manage_projects}
         return render(request, 'admin.html', context)
-    return Http404("no permission")
+    raise Http404("no permission")
    
    
 @superuser_required       
@@ -70,7 +71,7 @@ def add(request):
         project.is_reviewed = True
         project.save()
         return redirect("admin_page:upload_projects")
-    return Http404()
+    raise Http404()
 
 
 @superuser_required 
@@ -113,7 +114,7 @@ def log_in(request):
             login(request, user)
             return redirect('/admin_page/upload_projects')
         else:
-            return Http404("login_failed")
+            raise Http404("login_failed")
         
         
 @superuser_required
