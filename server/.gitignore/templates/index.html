@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+<main>
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Interactive Simulation for Physics</h1>
+        <p class="lead text-muted">Learning Physics and simulate experiment in  Fudan Physics Teaching Lab Playground</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        {% for project in Projects %}
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src="{{ project.pic_path }}" width="100%" height="225">
+            <div class="card-body">
+              <p class="card-text">{{project.name}}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <a href="{{ project.html_path }}">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Open</button>
+                  </a>
+                </div>
+                <small class="text-muted">Author: Chunliang Mu</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}
+
+{#<footer class="text-muted py-5">#}
+{#  <div class="container">#}
+{#    <p class="float-end mb-1">#}
+{#      <a href="#">Back to top</a>#}
+{#    </p>#}
+{#    <p class="mb-1"><a href="http://phylab.fudan.edu.cn/doku.php" target="_blank">Fudan Physics Teaching Lab</a></p>#}
+{#  </div>#}
+{#</footer>#}
+      

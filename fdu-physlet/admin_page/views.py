@@ -121,6 +121,6 @@ def log_out(request):
     '''logout for admin'''
 
     logout(request)
-    return redirect("/admin_page/log_in")
+    return redirect("admin_page:log_in")
  
     

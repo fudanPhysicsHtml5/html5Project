@@ -40,7 +40,11 @@ INSTALLED_APPS = [
     'physics',
     'corsheaders',
     'admin_page',
-    'accounts'
+    'accounts',
+    'mptt',
+    'ckeditor',
+    'comment',
+    'summary',
 ]
 
 MIDDLEWARE = [
@@ -60,7 +64,11 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates'), os.path.join(BASE_DIR, 'libs', 'templates'),os.path.join(BASE_DIR, 'physics', 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates'), 
+                os.path.join(BASE_DIR, 'libs', 'templates'), 
+                os.path.join(BASE_DIR, 'physics', 'templates'),
+                os.path.join(BASE_DIR, 'comment', 'templates'),
+                os.path.join(BASE_DIR, 'summary', 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -72,6 +80,24 @@ TEMPLATES = [
         },
     },
 ]
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'width':'auto',
+        'height':'250px',
+        'tabSpaces': 4,
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Smiley', 'CodeSnippet'], 
+            ['Bold', 'Italic', 'Underline', 'RemoveFormat', 'Blockquote'],
+            ['TextColor', 'BGColor'],
+            ['Link', 'Unlink'],
+            ['NumberedList', 'BulletedList'],
+            ['Maximize']
+        ],
+        'extraPlugins': ','.join(['codesnippet']),
+    }
+}
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
@@ -201,3 +227,6 @@ LOGOUT_REDIRECT_URL = '/accounts/login'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'

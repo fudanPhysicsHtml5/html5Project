@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse, FileResponse
 import os
 import pathlib
 import zipfile
@@ -11,7 +11,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect
 import zipfile
-from .forms import UploadProjectForm, CommentForm
+from .forms import UploadProjectForm
 from .models import Project
 from mysite.settings import MEDIA_ROOT, MEDIA_URL
 projectPath = os.path.join(os.path.dirname(os.path.dirname(__file__)), "projectFile")
@@ -24,18 +24,18 @@ def index(request):
     return render(request, 'index/index.html', {'projects': projects})
 
 
-def download(request):
+def download(request, id):
+    project = get_object_or_404(Project, id=id)
+    file_name = project.title+".zip"
     if request.method=='GET':
-        first = request.GET.get("first")
-        second = request.GET.get("second")
-        print('first = {} second = {}'.format(first, second))
-        path = os.path.dirname(os.path.dirname(__file__))
-        file_path = os.path.join(path, "statics\\download_test.html")
-        file = open(file_path, "rb")
-        response = HttpResponse(file)
-        response['content_type'] = 'application/octet-stream'
-        response['Content-Disposition'] ='attachment;filename="models.html"'
+        file_path = project.upload_file.path
+        file = open(project.upload_file.path, "rb")
+        response = FileResponse(file)
+        response['Content-Disposition'] = 'attachment; filename='+file_name
+        response['content_type'] = 'application/zip'
         return response
+    else:
+        return HttpResponse("only accept GET request")
 
 
 @login_required

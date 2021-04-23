@@ -1,4 +1,4 @@
----------------------version 1.0----------------------------------
+# version1.0
 ## 功能
 1. 下载对应html文件
 2. 注册，登录，登出，修改密码
@@ -6,6 +6,8 @@
 4. 为管理员添加登录页面
 5. 考虑添加删除的评论，同步到用户上传界面
 
+# version1.1
+添加评论功能
 ## 实现：
 1.使用django作后端
 2.前端使用bootstrap框架
@@ -174,3 +176,8 @@ server {
 $ python manage.py collectstatic
 ```
 将会将static文件收集到STATIC_ROOT中
+
+# 评论模型
+- 使用django-MPTT库，进行树形迭代
+- 限制二级评论，所有评论回复parent指向一级评论，reply to 指示回复对象
+- 使用ckeditor实现文本编辑，表情添加

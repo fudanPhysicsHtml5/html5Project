@@ -15,7 +15,6 @@ function delete_project(url, title) {
         data: form,
         success: function(data) {
             location.reload();
-            alert("删除成功");
         }
     });
     //$("#delete_btn").click();

@@ -2,13 +2,13 @@ var target_url = "http://127.0.0.1:8000"
 
 function if_logged_in() {
     $.ajax({
-        url: target_url + "/admin_page/log_in",
+        url: { % url 'admin_page:login_in' % },
         type: "GET",
     });
 }
 
 $("#log_in_form").ajaxForm({
-    url: target_url + "/admin_page/log_in",
+    url: { % url 'admin_page:login_in' % },
     type: "POST",
     success: function(data) {
         if (data == "login failed") {
