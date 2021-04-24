@@ -16,10 +16,9 @@ from .models import Project
 from mysite.settings import MEDIA_ROOT, MEDIA_URL
 projectPath = os.path.join(os.path.dirname(os.path.dirname(__file__)), "projectFile")
         
-        
 
 def index(request):
-    projects = Project.objects.all()
+    projects = Project.objects.filter(is_reviewed=True)
     pjs = list(projects)
     return render(request, 'index/index.html', {'projects': projects})
 

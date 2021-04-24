@@ -7,6 +7,7 @@ app_name = 'physics'
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('physics', views.index, name='index'),
     path('upload', views.upload, name='upload'),
     path('download/<int:id>', views.download, name='download'),
     # path('log_in', views.log_in),
