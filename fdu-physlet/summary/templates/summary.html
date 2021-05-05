@@ -7,19 +7,20 @@
         <div class="col-10">
             <!--thumbnail for the project-->>
             <div style="text-align: center">
-                <img src="{{ project.thumbnail.url }}" height="400">
+                <img src="{{ project.thumbnail.url }}" width="100%">
             </div>
-            <!--button for the project-->>
-            <div>
-                <a href="{{ project.index_path }}">
-                    <button type="button" class="btn btn-danger btn-lg btn-block" style="width:100%">play</button>
-                </a>
-            </div>
-            <div>     
-                <a href="{% url 'physics:download' project.id %}">
-                    <button type="button" class="btn btn-primary btn-lg btn-block">download</button>
-                </a>
-            </p>
+            <div style="text-align:center">
+                <!--button for the project-->
+                <span style="padding:10px;display:inline-block;width:20%">
+                    <a href="{{ project.index_path }}">
+                        <button type="button" class="btn btn-danger btn-lg" style="width:100%">play</button>
+                    </a>
+                </span>
+                <span style="padding:10px;display:inline-block;width:20%"> 
+                    <a href="{% url 'physics:download' project.id %}">
+                        <button type="button" class="btn btn-primary btn-lg" style="width:100%">download</button>
+                    </a>
+                </span>
             </div>
             <script src="{% static 'ckeditor/ckeditor/plugins/prism/lib/prism/prism_patched.min.js' %}"></script>
             <link rel="stylesheet" href="{% static 'prism/prism.css' %}">
@@ -49,10 +50,6 @@
                 </h5>
                 <br>
             {% endif %}
-
-
-
-
 
             <!--show comments-->
             {% load mptt_tags %}
