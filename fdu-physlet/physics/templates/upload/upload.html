@@ -8,7 +8,8 @@
 {% block content %}
 	<div class="container-fluid row">
 		<div class="container mt-5">
-			<h1 class="py-3 px-2 bg-dark text-light d-flex justify-content-between">New Post </h1>
+			<h1 class="py-3 px-2 bg-dark text-light d-flex justify-content-between">New Project </h1>
+            <p>Please archive your project into a zip file, and name the main page as index.html! </p>
 			<div class=" bg-grey container mx-auto py-3">
 
 				{% if form.non_field_errors %}
@@ -24,7 +25,10 @@
 		          {% csrf_token %}
 		          {% for field in form %}
 		          <div class="form-group">
-		            {% if field.errors %}
+                    {{ field.label_tag }}
+		            {{ field|add_class:'form-control' }}
+
+                  	{% if field.errors %}
 		              <div class="alert alert-warningalert-dismissible fade show" role='alert'>
 		                {{ field.errors }}
 		                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -32,9 +36,7 @@
 		                </button>
 		              </div>
 		            {% endif %}
-		        
-		            {{ field.label_tag }}
-		            {{ field|add_class:'form-control' }}
+
 		          </div>
 		          {% endfor %}
 		          <input type='submit' class="btn btn-primary btn-block" value='submit'>
