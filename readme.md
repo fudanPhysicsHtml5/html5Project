@@ -1,41 +1,41 @@
-# version1.0
-## 功能
+[toc]
+
+# 开发日志
+
+## version1.0
+
+### 功能
 1. 下载对应html文件
 2. 注册，登录，登出，修改密码
 3. 管理员页面：1.管理上传项目：打开，发布项目，删除项目 2.管理已发布项目：打开，删除项目
 4. 为管理员添加登录页面
 5. 考虑添加删除的评论，同步到用户上传界面
 
-# version1.1
-添加评论功能
-## 实现：
-1.使用django作后端
-2.前端使用bootstrap框架
-3.暂时使用django自带SQLite3数据库
+### 实现
 
-## 文件结构
+#### 管理员页面
 
-- ├── db.sqlite3            #数据库
+- 对应于admin_page模块，登录和管理页面位于template中
+- 前端页面使用bootstrap
+- 使用django user模块实现管理员验证
 
-  ├── environment.md  
+##  version1.1
 
-  ├── manage.py
+### 功能
 
-  ├── admin_page    #管理员页面
+1. 添加评论功能， 限制到二级评论，可对他人评论进行回复
+2. 增加概览页面，提供缩略图预览吗，打开和下载功能
 
-  ├── mysite
+### 实现：
 
-  ├── mysite_nginx.conf
+#### 概览和评论
 
-  ├── physics              #index页面
+- 对应summary和comment模块
+- summary处理概览页面，返回页面并根据是否登录提供功能
+- comment模块处理评论，向数据库添加评论以及渲染评论表单
+- 使用django-ckeditor提供富文本编辑功能
+- 使用django-mptt进行遍历，实现多级评论
 
-  ├── projectFile
-
-  ├── static                 #静态页面, js
-
-  └── templates        #动态页面, html页面
-
-环境布置
 # 环境配置说明
 
 ## 安装Nginx
@@ -176,8 +176,3 @@ server {
 $ python manage.py collectstatic
 ```
 将会将static文件收集到STATIC_ROOT中
-
-# 评论模型
-- 使用django-MPTT库，进行树形迭代
-- 限制二级评论，所有评论回复parent指向一级评论，reply to 指示回复对象
-- 使用ckeditor实现文本编辑，表情添加

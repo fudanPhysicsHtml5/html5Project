@@ -84,7 +84,6 @@ def delete(request):
         os.remove(project.upload_file.path)
         path = project.index_path
         pj_dir = pathlib.PurePath(path).parent
-        print(pj_dir)
         if pathlib.Path(pj_dir).is_dir():
            shutil.rmtree(pj_dir)
 
